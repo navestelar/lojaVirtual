@@ -1,0 +1,7 @@
+br\com\lojavirtual\dao\UsuarioDAO.class
+br\com\lojavirtual\App.class
+br\com\lojavirtual\dao\TestaConexao.class
+br\com\lojavirtual\dao\ProdutoDAO.class
+br\com\lojavirtual\config\HikariCPConfig.class
+br\com\lojavirtual\dao\ConexaoMySQL.class
+br\com\lojavirtual\model\Produto.class
