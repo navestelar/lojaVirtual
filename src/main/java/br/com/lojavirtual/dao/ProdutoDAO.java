@@ -25,6 +25,8 @@ public class ProdutoDAO {
                     statement.setInt(5, produto.getQtdEstoque());
                     statement.setBoolean(6, produto.isAtivo());
                     statement.executeUpdate();
+                } finally {
+                    ConexaoMySQL.fecharConexao(connection);
                 }
             } catch (SQLException e) {
                 logger.error("Erro ao cadastrar produto: " + e.getMessage());
@@ -52,6 +54,8 @@ public class ProdutoDAO {
                         produtos.put(produto.getId(), produto);
                     }
                 }
+            } finally {
+                ConexaoMySQL.fecharConexao(connection);
             }
         } catch (SQLException e) {
             logger.error("Erro ao listar produto: " + e.getMessage());
@@ -66,6 +70,8 @@ public class ProdutoDAO {
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setInt(1, id);
                 statement.executeUpdate();
+            } finally {
+                ConexaoMySQL.fecharConexao(connection);
             }
         } catch (SQLException e) {
             logger.error("Erro ao excluir produto: " + e.getMessage());
@@ -87,10 +93,38 @@ public class ProdutoDAO {
                 statement.setBoolean(6, produto.isAtivo());
                 statement.setInt(7, produto.getId());
                 statement.executeUpdate();
+            } finally {
+                ConexaoMySQL.fecharConexao(connection);
             }
         } catch (SQLException e) {
             logger.error("Erro ao atualizar produto: " + e.getMessage());
             throw new RuntimeException("Erro ao atualizar produto", e);
         }
+    }
+
+    public Produto buscarProdutoPorId(int id) {
+        Produto produto = new Produto();
+        try (Connection connection = ConexaoMySQL.conectar()) {
+            String sql = "SELECT * FROM produto WHERE produto_id = ?";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setInt(1, id);
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if (resultSet.next()) {
+                        produto.setId(resultSet.getInt("produto_id"));
+                        produto.setNome(resultSet.getString("nome"));
+                        produto.setDescricao(resultSet.getString("descricao"));
+                        produto.setPreco(resultSet.getFloat("preco"));
+                        produto.setQtdEstoque(resultSet.getInt("qtdEstoque"));
+                        produto.setAtivo(resultSet.getBoolean("ativo"));
+                    } else {
+                        logger.warn("Produto não encontrado para o ID: " + id);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            logger.error("Erro ao buscar produto por id: " + e.getMessage());
+            throw new RuntimeException("Erro ao buscar produto por id", e);
+        }
+        return produto;
     }
 }

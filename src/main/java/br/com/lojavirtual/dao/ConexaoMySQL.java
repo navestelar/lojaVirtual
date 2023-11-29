@@ -23,15 +23,9 @@ public class ConexaoMySQL {
         config.setPassword(SENHA);
         config.setDriverClassName("com.mysql.cj.jdbc.Driver");
 
-        // Configurações do HikariCP
-        config.setMaximumPoolSize(10); // Número máximo de conexões no pool
-        config.setMinimumIdle(5); // Número mínimo de conexões ociosas no pool
-        config.setIdleTimeout(30000); // Tempo máximo de inatividade em milissegundos
-
-        // Configurações adicionais do HikariCP, se necessário
-        // config.addDataSourceProperty("cachePrepStmts", "true");
-        // config.addDataSourceProperty("prepStmtCacheSize", "250");
-        // ...
+        config.setMaximumPoolSize(10);
+        config.setMinimumIdle(5);
+        config.setIdleTimeout(30000);
 
         dataSource = new HikariDataSource(config);
     }
@@ -40,9 +34,19 @@ public class ConexaoMySQL {
         try {
             return dataSource.getConnection();
         } catch (SQLException e) {
-            // Trate a exceção de forma adequada, como imprimir um log ou relançar uma exceção personalizada.
             e.printStackTrace();
             throw new RuntimeException("Erro ao conectar ao banco de dados", e);
+        }
+    }
+
+    public static void fecharConexao(Connection conexao) {
+        if (conexao != null) {
+            try {
+                conexao.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new RuntimeException("Erro ao fechar conexão com o banco de dados", e);
+            }
         }
     }
 }

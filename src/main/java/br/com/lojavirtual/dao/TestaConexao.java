@@ -16,5 +16,7 @@ public class TestaConexao {
         Produto produto2 = new Produto(2, "2", "2", 2, 2, false);
         produtoDAO.atualizarProduto(produto2);
         System.out.println(produtoDAO.listarProdutos().get(2).getNome());
+        Produto busca = produtoDAO.buscarProdutoPorId(2);
+        System.out.println(busca.toString());
     }
 }
