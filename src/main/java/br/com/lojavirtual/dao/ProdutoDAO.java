@@ -13,8 +13,10 @@ import org.slf4j.LoggerFactory;
 
 public class ProdutoDAO {
     private static final Logger logger = LoggerFactory.getLogger(ProdutoDAO.class);
+    private static final HashMap<Integer, Produto> mapProdutos = new HashMap<>();
+
     public void cadastrarProduto(Produto produto) {
-        if (!this.listarProdutos().containsKey(produto.getId()) ) {
+        if (!mapProdutos.containsKey(produto.getId()) ) {
             try (Connection connection = ConexaoMySQL.conectar()) {
                 String sql = "INSERT INTO produto (produto_id, nome, descricao, preco, qtdEstoque, ativo) VALUES (?, ?, ?, ?, ?, ?)";
                 try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -37,12 +39,12 @@ public class ProdutoDAO {
         }
     }
 
-    public HashMap<Integer, Produto> listarProdutos() {
-        HashMap<Integer, Produto> produtos = new HashMap<Integer, Produto>();
+    private void atualizarMapProdutos() {
         try (Connection connection = ConexaoMySQL.conectar()) {
             String sql = "SELECT * FROM produto";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 try (ResultSet resultSet = statement.executeQuery()) {
+                    mapProdutos.clear();
                     while (resultSet.next()) {
                         Produto produto = new Produto();
                         produto.setId(resultSet.getInt("produto_id"));
@@ -51,17 +53,21 @@ public class ProdutoDAO {
                         produto.setPreco(resultSet.getFloat("preco"));
                         produto.setQtdEstoque(resultSet.getInt("qtdEstoque"));
                         produto.setAtivo(resultSet.getBoolean("ativo"));
-                        produtos.put(produto.getId(), produto);
+                        mapProdutos.put(produto.getId(), produto);
                     }
                 }
             } finally {
-                ConexaoMySQL.fecharConexao(connection);
+                connection.close();
             }
         } catch (SQLException e) {
-            logger.error("Erro ao listar produto: " + e.getMessage());
-            throw new RuntimeException("Erro ao listar produtos", e);
+            logger.error("Erro ao atualizar lista de produtos: ", e.getMessage());
+            throw new RuntimeException("Erro ao atualizar lista de produtos", e);
         }
-        return produtos;
+    }
+
+    public HashMap<Integer, Produto> listarProdutos() {
+        atualizarMapProdutos();
+        return new HashMap<>(mapProdutos);
     }
 
     public void excluirProduto(int id) {
@@ -76,8 +82,6 @@ public class ProdutoDAO {
         } catch (SQLException e) {
             logger.error("Erro ao excluir produto: " + e.getMessage());
             throw new RuntimeException("Erro ao excluir produto", e);
-        } finally {
-            logger.warn("Produto excluído com sucesso");
         }
     }
 
@@ -120,6 +124,8 @@ public class ProdutoDAO {
                         logger.warn("Produto não encontrado para o ID: " + id);
                     }
                 }
+            } finally {
+                ConexaoMySQL.fecharConexao(connection);
             }
         } catch (SQLException e) {
             logger.error("Erro ao buscar produto por id: " + e.getMessage());
