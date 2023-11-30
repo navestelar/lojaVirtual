@@ -1,7 +1,7 @@
-package br.com.lojavirtual.dao;
+package br.com.lojavirtual.model.dao;
 
-import br.com.lojavirtual.model.Produto;
-import br.com.lojavirtual.model.Usuario;
+import br.com.lojavirtual.model.DTO.Produto;
+import br.com.lojavirtual.model.DTO.Usuario;
 public class TestaConexao {
     public static void main(String[] args) {
         ProdutoDAO produtoDAO = new ProdutoDAO();

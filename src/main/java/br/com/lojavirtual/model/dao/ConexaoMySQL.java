@@ -1,4 +1,4 @@
-package br.com.lojavirtual.dao;
+package br.com.lojavirtual.model.dao;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;

@@ -1,4 +1,4 @@
-package br.com.lojavirtual.dao;
+package br.com.lojavirtual.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +9,7 @@ import java.util.HashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import br.com.lojavirtual.model.Usuario;
+import br.com.lojavirtual.model.DTO.Usuario;
 
 public class UsuarioDAO {
     private static final Logger logger = LoggerFactory.getLogger(UsuarioDAO.class);

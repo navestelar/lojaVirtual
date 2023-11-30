@@ -1,4 +1,4 @@
-package br.com.lojavirtual.model;
+package br.com.lojavirtual.model.DTO;
 
 public class Fornecedor {
     private int id;

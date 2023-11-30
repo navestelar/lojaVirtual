@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="br.com.lojavirtual.AppTest" time="0.127" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="br.com.lojavirtual.AppTest" time="0.095" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.class.path" value="C:\Users\Usuário\Desktop\programacao\lojaVirtual\lojavirtual\target\test-classes;C:\Users\Usuário\Desktop\programacao\lojaVirtual\lojavirtual\target\classes;C:\Users\Usuário\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\Usuário\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\Usuário\.m2\repository\mysql\mysql-connector-java\8.0.23\mysql-connector-java-8.0.23.jar;C:\Users\Usuário\.m2\repository\com\google\protobuf\protobuf-java\3.11.4\protobuf-java-3.11.4.jar;C:\Users\Usuário\.m2\repository\com\zaxxer\HikariCP\4.0.3\HikariCP-4.0.3.jar;C:\Users\Usuário\.m2\repository\org\slf4j\slf4j-api\1.7.32\slf4j-api-1.7.32.jar;C:\Users\Usuário\.m2\repository\ch\qos\logback\logback-classic\1.2.6\logback-classic-1.2.6.jar;C:\Users\Usuário\.m2\repository\ch\qos\logback\logback-core\1.2.6\logback-core-1.2.6.jar;"/>
+    <property name="java.class.path" value="C:\Users\Usuário\Desktop\programacao\aaaaaaaa\lojaVirtual\target\test-classes;C:\Users\Usuário\Desktop\programacao\aaaaaaaa\lojaVirtual\target\classes;C:\Users\Usuário\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\Usuário\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\Usuário\.m2\repository\mysql\mysql-connector-java\8.0.23\mysql-connector-java-8.0.23.jar;C:\Users\Usuário\.m2\repository\com\google\protobuf\protobuf-java\3.11.4\protobuf-java-3.11.4.jar;C:\Users\Usuário\.m2\repository\com\zaxxer\HikariCP\4.0.3\HikariCP-4.0.3.jar;C:\Users\Usuário\.m2\repository\org\slf4j\slf4j-api\1.7.32\slf4j-api-1.7.32.jar;C:\Users\Usuário\.m2\repository\ch\qos\logback\logback-classic\1.2.6\logback-classic-1.2.6.jar;C:\Users\Usuário\.m2\repository\ch\qos\logback\logback-core\1.2.6\logback-core-1.2.6.jar;"/>
     <property name="java.vm.vendor" value="Eclipse Adoptium"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
@@ -15,9 +15,9 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="BR"/>
     <property name="sun.boot.library.path" value="C:\Users\Usuário\AppData\Local\Programs\Eclipse Adoptium\jdk-17.0.7.7-hotspot\bin"/>
-    <property name="sun.java.command" value="C:\Users\USURIO~2\AppData\Local\Temp\surefire9991504185614880319\surefirebooter15613951448116526248.jar C:\Users\Usuário\AppData\Local\Temp\surefire9991504185614880319 2023-11-28T22-36-59_256-jvmRun1 surefire2323462244162891056tmp surefire_08089156806064915750tmp"/>
+    <property name="sun.java.command" value="C:\Users\USURIO~2\AppData\Local\Temp\surefire667060325753404378\surefirebooter247652097557507440.jar C:\Users\Usuário\AppData\Local\Temp\surefire667060325753404378 2023-11-30T20-38-09_833-jvmRun1 surefire7491477358499241326tmp surefire_010126878260653444020tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="C:\Users\Usuário\Desktop\programacao\lojaVirtual\lojavirtual\target\test-classes;C:\Users\Usuário\Desktop\programacao\lojaVirtual\lojavirtual\target\classes;C:\Users\Usuário\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\Usuário\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\Usuário\.m2\repository\mysql\mysql-connector-java\8.0.23\mysql-connector-java-8.0.23.jar;C:\Users\Usuário\.m2\repository\com\google\protobuf\protobuf-java\3.11.4\protobuf-java-3.11.4.jar;C:\Users\Usuário\.m2\repository\com\zaxxer\HikariCP\4.0.3\HikariCP-4.0.3.jar;C:\Users\Usuário\.m2\repository\org\slf4j\slf4j-api\1.7.32\slf4j-api-1.7.32.jar;C:\Users\Usuário\.m2\repository\ch\qos\logback\logback-classic\1.2.6\logback-classic-1.2.6.jar;C:\Users\Usuário\.m2\repository\ch\qos\logback\logback-core\1.2.6\logback-core-1.2.6.jar;"/>
+    <property name="surefire.test.class.path" value="C:\Users\Usuário\Desktop\programacao\aaaaaaaa\lojaVirtual\target\test-classes;C:\Users\Usuário\Desktop\programacao\aaaaaaaa\lojaVirtual\target\classes;C:\Users\Usuário\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\Usuário\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\Usuário\.m2\repository\mysql\mysql-connector-java\8.0.23\mysql-connector-java-8.0.23.jar;C:\Users\Usuário\.m2\repository\com\google\protobuf\protobuf-java\3.11.4\protobuf-java-3.11.4.jar;C:\Users\Usuário\.m2\repository\com\zaxxer\HikariCP\4.0.3\HikariCP-4.0.3.jar;C:\Users\Usuário\.m2\repository\org\slf4j\slf4j-api\1.7.32\slf4j-api-1.7.32.jar;C:\Users\Usuário\.m2\repository\ch\qos\logback\logback-classic\1.2.6\logback-classic-1.2.6.jar;C:\Users\Usuário\.m2\repository\ch\qos\logback\logback-core\1.2.6\logback-core-1.2.6.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\Usuário"/>
     <property name="user.language" value="pt"/>
@@ -25,12 +25,12 @@
     <property name="java.version.date" value="2023-04-18"/>
     <property name="java.home" value="C:\Users\Usuário\AppData\Local\Programs\Eclipse Adoptium\jdk-17.0.7.7-hotspot"/>
     <property name="file.separator" value="\"/>
-    <property name="basedir" value="C:\Users\Usuário\Desktop\programacao\lojaVirtual\lojavirtual"/>
+    <property name="basedir" value="C:\Users\Usuário\Desktop\programacao\aaaaaaaa\lojaVirtual"/>
     <property name="java.vm.compressedOopsMode" value="32-bit"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\USURIO~2\AppData\Local\Temp\surefire9991504185614880319\surefirebooter15613951448116526248.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\USURIO~2\AppData\Local\Temp\surefire667060325753404378\surefirebooter247652097557507440.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="17.0.7+7"/>
@@ -45,7 +45,7 @@
     <property name="java.vendor.url.bug" value="https://github.com/adoptium/adoptium-support/issues"/>
     <property name="java.io.tmpdir" value="C:\Users\USURIO~2\AppData\Local\Temp\"/>
     <property name="java.version" value="17.0.7"/>
-    <property name="user.dir" value="C:\Users\Usuário\Desktop\programacao\lojaVirtual\lojavirtual"/>
+    <property name="user.dir" value="C:\Users\Usuário\Desktop\programacao\aaaaaaaa\lojaVirtual"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="sun.os.patch.level" value=""/>
@@ -57,5 +57,5 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="shouldAnswerWithTrue" classname="br.com.lojavirtual.AppTest" time="0.016"/>
+  <testcase name="shouldAnswerWithTrue" classname="br.com.lojavirtual.AppTest" time="0.012"/>
 </testsuite>
