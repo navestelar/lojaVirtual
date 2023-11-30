@@ -16,6 +16,7 @@ public class ProdutoDAO {
     private static final HashMap<Integer, Produto> mapProdutos = new HashMap<>();
 
     public void cadastrarProduto(Produto produto) {
+        atualizarMapProdutos();
         if (!mapProdutos.containsKey(produto.getId()) ) {
             try (Connection connection = ConexaoMySQL.conectar()) {
                 String sql = "INSERT INTO produto (produto_id, nome, descricao, preco, qtdEstoque, ativo) VALUES (?, ?, ?, ?, ?, ?)";
