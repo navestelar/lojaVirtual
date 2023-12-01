@@ -1,13 +1,12 @@
 package br.com.lojavirtual.model.DTO;
 
-import java.sql.Date;
-
 public class LogAcoes {
     private int id;
     private String acao;
-    private Date data;
+    private String data;
     private int userId;
-    public LogAcoes(int id, String acao, Date data, int userId) {
+    
+    public LogAcoes(int id, String acao, String data, int userId) {
         this.id = id;
         this.acao = acao;
         this.data = data;
@@ -27,12 +26,6 @@ public class LogAcoes {
     public void setAcao(String acao) {
         this.acao = acao;
     }
-    public Date getData() {
-        return data;
-    }
-    public void setData(Date data) {
-        this.data = data;
-    }
     public int getUserId() {
         return userId;
     }
@@ -42,5 +35,11 @@ public class LogAcoes {
     @Override
     public String toString() {
         return "LogAcoes [id=" + id + ", acao=" + acao + ", data=" + data + ", userId=" + userId + "]";
+    }
+    public String getData() {
+        return data;
+    }
+    public void setData(String data) {
+        this.data = data;
     }
 }

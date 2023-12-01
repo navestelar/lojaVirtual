@@ -1,5 +1,7 @@
 package br.com.lojavirtual.model.DTO;
 
+import java.util.HashMap;
+
 public class Produto {
     private int id;
     private String nome;
@@ -8,6 +10,13 @@ public class Produto {
     private float preco;
     private boolean ativo;
     private int fornecedorId;
+    private HashMap<Integer, Imagem> imagens;
+    public HashMap<Integer, Imagem> getImagens() {
+        return imagens;
+    }
+    public void setImagens(HashMap<Integer, Imagem> imagens) {
+        this.imagens = imagens;
+    }
     public Produto(int id, String nome, String descricao, int qtdEstoque, float preco, boolean ativo,
             int fornecedorId) {
         this.id = id;

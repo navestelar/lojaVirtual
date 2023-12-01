@@ -1,9 +1,18 @@
 package br.com.lojavirtual.model.DTO;
 
+import java.util.HashMap;
+
 public class Carrinho {
     private int id;
     private int clienteId;
     private int formaPagamentoId;
+    private HashMap<String, ItemCarrinho> itemsCarrinho;
+    public HashMap<String, ItemCarrinho> getItemsCarrinho() {
+        return itemsCarrinho;
+    }
+    public void setItemsCarrinho(HashMap<String, ItemCarrinho> itemsCarrinho) {
+        this.itemsCarrinho = itemsCarrinho;
+    }
     public Carrinho(int id, int clienteId, int formaPagamentoId) {
         this.id = id;
         this.clienteId = clienteId;

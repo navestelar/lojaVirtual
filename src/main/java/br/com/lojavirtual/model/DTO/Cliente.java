@@ -1,14 +1,23 @@
 package br.com.lojavirtual.model.DTO;
 
+import java.util.HashMap;
+
 public class Cliente extends Usuario {
     private int id;
     private String email;
-    private Number telefone;
+    private String telefone;
     private String endereco;
     private String cep;
     private int userId;
+    private HashMap<Integer, Carrinho> carrinhos;
+    public HashMap<Integer, Carrinho> getCarrinhos() {
+        return carrinhos;
+    }
+    public void setCarrinhos(HashMap<Integer, Carrinho> carrinhos) {
+        this.carrinhos = carrinhos;
+    }
     public Cliente(int id, String nome, String username, String senha, String tipo, boolean ativo, int id2,
-            String email, Number telefone, String endereco, String cep, int userId) {
+            String email, String telefone, String endereco, String cep, int userId) {
         super(id, nome, username, senha, tipo, ativo);
         id = id2;
         this.email = email;
@@ -17,7 +26,7 @@ public class Cliente extends Usuario {
         this.cep = cep;
         this.userId = userId;
     }
-    public Cliente(int id, String email, Number telefone, String endereco, String cep, int userId) {
+    public Cliente(int id, String email, String telefone, String endereco, String cep, int userId) {
         this.id = id;
         this.email = email;
         this.telefone = telefone;
@@ -39,10 +48,10 @@ public class Cliente extends Usuario {
     public void setEmail(String email) {
         this.email = email;
     }
-    public Number getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
-    public void setTelefone(Number telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
     public String getEndereco() {
@@ -63,9 +72,5 @@ public class Cliente extends Usuario {
     public void setUserId(int userId) {
         this.userId = userId;
     }
-    @Override
-    public String toString() {
-        return "Cliente [id=" + id + ", email=" + email + ", telefone=" + telefone + ", endereco=" + endereco + ", cep="
-                + cep + ", userId=" + userId + "]";
-    }
+    
 }

@@ -5,6 +5,13 @@ public class ItemCarrinho {
     private int quantidade;
     private int produtoId;
     private int carrinhoId;
+    private Produto produto;
+    public Produto getProduto() {
+        return produto;
+    }
+    public void setProduto(Produto produto) {
+        this.produto = produto;
+    }
     public ItemCarrinho(int id, int quantidade, int produtoId, int carrinhoId) {
         this.id = id;
         this.quantidade = quantidade;
