@@ -1,4 +1,4 @@
-package br.com.lojavirtual.model.dao;
+package br.com.lojavirtual.model.DAO;
 
 public class ImagemDAO {
     public void cadastrarImagem() {

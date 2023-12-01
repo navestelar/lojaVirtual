@@ -1,4 +1,4 @@
-package br.com.lojavirtual.model.dao;
+package br.com.lojavirtual.ConexaoMYSQL;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -7,7 +7,7 @@ import com.zaxxer.hikari.HikariDataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class ConexaoMySQL {
+public class Conexao {
 
     private static final String URL = "jdbc:mysql://127.0.0.1:3306/lojavirtual";
     private static final String USUARIO = "root";

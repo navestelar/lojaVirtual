@@ -1,4 +1,4 @@
-package br.com.lojavirtual.model.dao;
+package br.com.lojavirtual.model.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,6 +9,7 @@ import java.util.HashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import br.com.lojavirtual.ConexaoMYSQL.Conexao;
 import br.com.lojavirtual.model.DTO.Produto;
 
 public class ProdutoDAO {
@@ -18,7 +19,7 @@ public class ProdutoDAO {
     public void cadastrarProduto(Produto produto) {
         atualizarMapProdutos();
         if (!mapProdutos.containsKey(produto.getId()) ) {
-            try (Connection connection = ConexaoMySQL.conectar()) {
+            try (Connection connection = Conexao.conectar()) {
                 String sql = "INSERT INTO produto (produto_id, nome, descricao, preco, qtdEstoque, ativo) VALUES (?, ?, ?, ?, ?, ?)";
                 try (PreparedStatement statement = connection.prepareStatement(sql)) {
                     statement.setInt(1, produto.getId());
@@ -29,7 +30,7 @@ public class ProdutoDAO {
                     statement.setBoolean(6, produto.isAtivo());
                     statement.executeUpdate();
                 } finally {
-                    ConexaoMySQL.fecharConexao(connection);
+                    Conexao.fecharConexao(connection);
                 }
             } catch (SQLException e) {
                 logger.error("Erro ao cadastrar produto: " + e.getMessage());
@@ -41,7 +42,7 @@ public class ProdutoDAO {
     }
 
     private void atualizarMapProdutos() {
-        try (Connection connection = ConexaoMySQL.conectar()) {
+        try (Connection connection = Conexao.conectar()) {
             String sql = "SELECT * FROM produto";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 try (ResultSet resultSet = statement.executeQuery()) {
@@ -72,13 +73,13 @@ public class ProdutoDAO {
     }
 
     public void excluirProduto(int id) {
-        try (Connection connection = ConexaoMySQL.conectar()) {
+        try (Connection connection = Conexao.conectar()) {
             String sql = "DELETE FROM produto WHERE produto_id = ?";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setInt(1, id);
                 statement.executeUpdate();
             } finally {
-                ConexaoMySQL.fecharConexao(connection);
+                Conexao.fecharConexao(connection);
             }
         } catch (SQLException e) {
             logger.error("Erro ao excluir produto: " + e.getMessage());
@@ -87,7 +88,7 @@ public class ProdutoDAO {
     }
 
     public void atualizarProduto(Produto produto) {
-        try (Connection connection = ConexaoMySQL.conectar()) {
+        try (Connection connection = Conexao.conectar()) {
             String sql = "UPDATE produto SET produto_id = ?, nome = ?, descricao = ?, preco = ?, qtdEstoque = ?, ativo = ? WHERE produto_id = ?;";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setInt(1, produto.getId());
@@ -99,7 +100,7 @@ public class ProdutoDAO {
                 statement.setInt(7, produto.getId());
                 statement.executeUpdate();
             } finally {
-                ConexaoMySQL.fecharConexao(connection);
+                Conexao.fecharConexao(connection);
             }
         } catch (SQLException e) {
             logger.error("Erro ao atualizar produto: " + e.getMessage());
@@ -109,7 +110,7 @@ public class ProdutoDAO {
 
     public Produto buscarProdutoPorId(int id) {
         Produto produto = new Produto();
-        try (Connection connection = ConexaoMySQL.conectar()) {
+        try (Connection connection = Conexao.conectar()) {
             String sql = "SELECT * FROM produto WHERE produto_id = ?";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setInt(1, id);
@@ -126,7 +127,7 @@ public class ProdutoDAO {
                     }
                 }
             } finally {
-                ConexaoMySQL.fecharConexao(connection);
+                Conexao.fecharConexao(connection);
             }
         } catch (SQLException e) {
             logger.error("Erro ao buscar produto por id: " + e.getMessage());
