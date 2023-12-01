@@ -18,19 +18,16 @@ public class App
         System.out.println(usuarioBO.excluir(usuario));
         usuarioBO.inserir(usuario);
         System.out.println(usuarioBO.procurarPorId(usuario.getId()));
-        System.out.println(usuarioBO.procurarPorUsername(usuario.getUsername()));
         System.out.println(usuarioBO.existe(usuario));
         System.out.println(usuarioBO.existePorId(usuario.getId()));
-        System.out.println(usuarioBO.existePorUsername(usuario.getUsername()));
         System.out.println(usuarioBO.listarUsuarios());
+        System.out.println(usuarioBO.existePorUsername(usuario.getUsername()));
         System.out.println(usuarioBO.desativarPorId(usuario.getId()));
+        System.out.println(usuarioBO.procurarPorUsername(usuario.getUsername()));
         System.out.println(usuarioBO.ativarPorId(usuario.getId()));
         System.out.println(usuarioBO.desativarPorUsername(usuario.getUsername()));
         System.out.println(usuarioBO.ativarPorUsername(usuario.getUsername()));
         usuario.setSenha("aaaaaaaaaaaaaaaaaaaaa");
         System.out.println(usuarioBO.atualizar(usuario));
-        for (Usuario u : usuarioBO.listarUsuarios().values()) {
-            usuarioBO.excluir(u);
-        }
     }
 }
