@@ -4,56 +4,21 @@ public class Produto {
     private int id;
     private String nome;
     private String descricao;
-    private float preco; 
     private int qtdEstoque;
+    private float preco;
     private boolean ativo;
-    
-    public Produto(int id, String nome, String descricao, float preco, int qtdEstoque, boolean ativo) {
-        this.setId(id);
-        this.setNome(nome);
-        this.setDescricao(descricao);
-        this.setPreco(preco);
-        this.setQtdEstoque(qtdEstoque);
-        this.setAtivo(ativo);
-    }
-
-    public Produto() {
-    }
-    
-    public int getQtdEstoque() {
-        return qtdEstoque;
-    }
-
-    public void setQtdEstoque(int qtdEstoque) {
-        if(qtdEstoque>=0)
-            this.qtdEstoque = qtdEstoque;
-    }
-    public String getNome() {
-        return nome;
-    }
-    public void setNome(String nome) {
-        if(nome != null)
-            this.nome = nome;
-    }
-    public String getDescricao() {
-        return descricao;
-    }
-    public void setDescricao(String descricao) {
-        if(descricao != null)
-            this.descricao = descricao;
-    }
-    public float getPreco() {
-        return preco;
-    }
-    public void setPreco(float preco) {
-        if(preco>0)
-            this.preco = preco;
-    }
-    public boolean isAtivo() {
-        return ativo;
-    }
-    public void setAtivo(boolean ativo) {
+    private int fornecedorId;
+    public Produto(int id, String nome, String descricao, int qtdEstoque, float preco, boolean ativo,
+            int fornecedorId) {
+        this.id = id;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.qtdEstoque = qtdEstoque;
+        this.preco = preco;
         this.ativo = ativo;
+        this.fornecedorId = fornecedorId;
+    }
+    public Produto() {
     }
     public int getId() {
         return id;
@@ -61,10 +26,45 @@ public class Produto {
     public void setId(int id) {
         this.id = id;
     }
-
+    public String getNome() {
+        return nome;
+    }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    public String getDescricao() {
+        return descricao;
+    }
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+    public int getQtdEstoque() {
+        return qtdEstoque;
+    }
+    public void setQtdEstoque(int qtdEstoque) {
+        this.qtdEstoque = qtdEstoque;
+    }
+    public float getPreco() {
+        return preco;
+    }
+    public void setPreco(float preco) {
+        this.preco = preco;
+    }
+    public boolean isAtivo() {
+        return ativo;
+    }
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+    public int getFornecedorId() {
+        return fornecedorId;
+    }
+    public void setFornecedorId(int fornecedorId) {
+        this.fornecedorId = fornecedorId;
+    }
     @Override
     public String toString() {
-        return "Produto {id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", preco=" + preco
-                + ", qtdEstoque=" + qtdEstoque + ", ativo=" + ativo + "}";
+        return "Produto [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", qtdEstoque=" + qtdEstoque
+                + ", preco=" + preco + ", ativo=" + ativo + ", fornecedorId=" + fornecedorId + "]";
     }
 }

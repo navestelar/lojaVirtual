@@ -1,13 +1,13 @@
 package br.com.lojavirtual.model.DTO;
 
-public class FormasPagamento {
+public class FormaPagamento {
     private int id;
     private String tipo;
-    public FormasPagamento(int id, String tipo) {
+    public FormaPagamento(int id, String tipo) {
         this.id = id;
         this.tipo = tipo;
     }
-    public FormasPagamento() {
+    public FormaPagamento() {
     }
     public int getId() {
         return id;
@@ -23,6 +23,6 @@ public class FormasPagamento {
     }
     @Override
     public String toString() {
-        return "FormasPagamento [id=" + id + ", tipo=" + tipo + "]";
+        return "FormaPagamento [id=" + id + ", tipo=" + tipo + "]";
     }
 }

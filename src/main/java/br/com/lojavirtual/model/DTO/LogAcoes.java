@@ -1,15 +1,17 @@
 package br.com.lojavirtual.model.DTO;
 
+import java.sql.Date;
+
 public class LogAcoes {
     private int id;
     private String acao;
-    private String data;
-    private int idUsuario;
-    public LogAcoes(int id, String acao, String data, int idUsuario) {
+    private Date data;
+    private int userId;
+    public LogAcoes(int id, String acao, Date data, int userId) {
         this.id = id;
         this.acao = acao;
         this.data = data;
-        this.idUsuario = idUsuario;
+        this.userId = userId;
     }
     public LogAcoes() {
     }
@@ -25,20 +27,20 @@ public class LogAcoes {
     public void setAcao(String acao) {
         this.acao = acao;
     }
-    public String getData() {
+    public Date getData() {
         return data;
     }
-    public void setData(String data) {
+    public void setData(Date data) {
         this.data = data;
     }
-    public int getIdUsuario() {
-        return idUsuario;
+    public int getUserId() {
+        return userId;
     }
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
     @Override
     public String toString() {
-        return "LogAcoes [id=" + id + ", acao=" + acao + ", data=" + data + ", idUsuario=" + idUsuario + "]";
+        return "LogAcoes [id=" + id + ", acao=" + acao + ", data=" + data + ", userId=" + userId + "]";
     }
 }

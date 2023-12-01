@@ -4,15 +4,15 @@ public class Imagem {
     private int id;
     private String url;
     private String descricao;
-
+    private int produtoId;
+    public Imagem(int id, String url, String descricao, int produtoId) {
+        this.id = id;
+        this.url = url;
+        this.descricao = descricao;
+        this.produtoId = produtoId;
+    }
     public Imagem() {
     }
-    public Imagem(int id, String url, String descricao) {
-        this.setId(id);
-        this.setUrl(url);
-        this.setDescricao(descricao);
-    }
-    
     public int getId() {
         return id;
     }
@@ -23,18 +23,22 @@ public class Imagem {
         return url;
     }
     public void setUrl(String url) {
-        if (url != null)
-            this.url = url;
+        this.url = url;
     }
     public String getDescricao() {
         return descricao;
     }
     public void setDescricao(String descricao) {
-        if (descricao != null)
-            this.descricao = descricao;
+        this.descricao = descricao;
+    }
+    public int getProdutoId() {
+        return produtoId;
+    }
+    public void setProdutoId(int produtoId) {
+        this.produtoId = produtoId;
     }
     @Override
     public String toString() {
-        return "Imagem [id=" + id + ", url=" + url + ", descricao=" + descricao + "]";
+        return "Imagem [id=" + id + ", url=" + url + ", descricao=" + descricao + ", produtoId=" + produtoId + "]";
     }
 }

@@ -2,12 +2,14 @@ package br.com.lojavirtual.model.DTO;
 
 public class Carrinho {
     private int id;
-    private Cliente cliente;
-    private FormasPagamento formaPagamento;
-    public Carrinho(int id, Cliente cliente, FormasPagamento formaPagamento) {
+    private int clienteId;
+    private int formaPagamentoId;
+    public Carrinho(int id, int clienteId, int formaPagamentoId) {
         this.id = id;
-        this.cliente = cliente;
-        this.formaPagamento = formaPagamento;
+        this.clienteId = clienteId;
+        this.formaPagamentoId = formaPagamentoId;
+    }
+    public Carrinho() {
     }
     public int getId() {
         return id;
@@ -15,20 +17,20 @@ public class Carrinho {
     public void setId(int id) {
         this.id = id;
     }
-    public Cliente getCliente() {
-        return cliente;
+    public int getClienteId() {
+        return clienteId;
     }
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public void setClienteId(int clienteId) {
+        this.clienteId = clienteId;
     }
-    public FormasPagamento getFormaPagamento() {
-        return formaPagamento;
+    public int getFormaPagamentoId() {
+        return formaPagamentoId;
     }
-    public void setFormaPagamento(FormasPagamento formaPagamento) {
-        this.formaPagamento = formaPagamento;
+    public void setFormaPagamentoId(int formaPagamentoId) {
+        this.formaPagamentoId = formaPagamentoId;
     }
     @Override
     public String toString() {
-        return "Carrinho [id=" + id + ", cliente=" + cliente + ", formaPagamento=" + formaPagamento + "]";
-    }
+        return "Carrinho [id=" + id + ", clienteId=" + clienteId + ", formaPagamentoId=" + formaPagamentoId + "]";
+    }    
 }

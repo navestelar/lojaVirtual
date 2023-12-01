@@ -2,8 +2,8 @@ package br.com.lojavirtual.model.DTO;
 
 public class Usuario {
     private int id;
-    private String nome;
-    private String username;
+	private String nome;
+    private String username;    
     private String senha;
     private String tipo;
     private boolean ativo;

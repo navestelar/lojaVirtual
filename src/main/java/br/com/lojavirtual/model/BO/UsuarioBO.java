@@ -10,13 +10,22 @@ public class UsuarioBO {
         if  (!existe(usuario)) {
             UsuarioDAO usuarioDAO = new UsuarioDAO();
             return usuarioDAO.inserir(usuario);
+        } 
+        
+        if (existePorUsername(usuario.getUsername())) {
+            System.out.println("Já existe um usuário com esse username");
         }
+
         return false;
     }
 
     public boolean alterar(Usuario usuario) {
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        return usuarioDAO.alterar(usuario);
+        if (existe(usuario)) {
+            UsuarioDAO usuarioDAO = new UsuarioDAO();
+            return usuarioDAO.alterar(usuario);
+        }
+        System.err.println("Esse usuário não existe");
+        return false;
     }
 
     public boolean excluir(Usuario usuario) {
@@ -52,5 +61,30 @@ public class UsuarioBO {
     public HashMap<String, Usuario> listarUsuarios() {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         return usuarioDAO.listarUsuarios();
+    }
+
+    public boolean desativarPorId(int id) {
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        return usuarioDAO.desativarPorId(id);
+    }
+
+    public boolean ativarPorId(int id) {
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        return usuarioDAO.ativarPorId(id);
+    }
+
+    public boolean desativarPorUsername(String username) {
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        return usuarioDAO.desativarPorUsername(username);
+    }
+
+    public boolean ativarPorUsername(String username) {
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        return usuarioDAO.ativarPorUsername(username);
+    }
+    
+    public boolean atualizar(Usuario usuario) {
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        return usuarioDAO.atualizar(usuario);
     }
 }

@@ -3,13 +3,11 @@ package br.com.lojavirtual.model.DTO;
 public class Fornecedor {
     private int id;
     private String nome;
-    private String email;
-    private String telefone;
-    public Fornecedor(int id, String nome, String email, String telefone) {
+    private String contato;
+    public Fornecedor(int id, String nome, String contato) {
         this.id = id;
         this.nome = nome;
-        this.email = email;
-        this.telefone = telefone;
+        this.contato = contato;
     }
     public Fornecedor() {
     }
@@ -25,21 +23,14 @@ public class Fornecedor {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    public String getEmail() {
-        return email;
+    public String getContato() {
+        return contato;
     }
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    public String getTelefone() {
-        return telefone;
-    }
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setContato(String contato) {
+        this.contato = contato;
     }
     @Override
     public String toString() {
-        return "Fornecedor [id=" + id + ", nome=" + nome + ", email=" + email + ", telefone=" + telefone + "]";
+        return "Fornecedor [id=" + id + ", nome=" + nome + ", contato=" + contato + "]";
     }
-    
 }
