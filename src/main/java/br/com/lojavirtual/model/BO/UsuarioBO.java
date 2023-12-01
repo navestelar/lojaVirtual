@@ -82,9 +82,4 @@ public class UsuarioBO {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         return usuarioDAO.ativarPorUsername(username);
     }
-    
-    public boolean atualizar(Usuario usuario) {
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        return usuarioDAO.atualizar(usuario);
-    }
 }

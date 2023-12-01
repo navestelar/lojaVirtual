@@ -6,39 +6,187 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import br.com.lojavirtual.ConexaoMYSQL.Conexao;
 import br.com.lojavirtual.model.DTO.Produto;
 
 public class ProdutoDAO {
-    private static final Logger logger = LoggerFactory.getLogger(ProdutoDAO.class);
-    private static final HashMap<Integer, Produto> mapProdutos = new HashMap<>();
+    final String tabela = "produto";
+    private static final HashMap<String, Produto> mapProdutos = new HashMap<>();
 
-    public void cadastrarProduto(Produto produto) {
-        atualizarMapProdutos();
-        if (!mapProdutos.containsKey(produto.getId()) ) {
-            try (Connection connection = Conexao.conectar()) {
-                String sql = "INSERT INTO produto (produto_id, nome, descricao, preco, qtdEstoque, ativo) VALUES (?, ?, ?, ?, ?, ?)";
-                try (PreparedStatement statement = connection.prepareStatement(sql)) {
-                    statement.setInt(1, produto.getId());
-                    statement.setString(2, produto.getNome());
-                    statement.setString(3, produto.getDescricao());
-                    statement.setFloat(4, produto.getPreco());
-                    statement.setInt(5, produto.getQtdEstoque());
-                    statement.setBoolean(6, produto.isAtivo());
-                    statement.executeUpdate();
-                } finally {
-                    Conexao.fecharConexao(connection);
-                }
-            } catch (SQLException e) {
-                logger.error("Erro ao cadastrar produto: " + e.getMessage());
-                throw new RuntimeException("Erro ao cadastrar produto", e);
-            }
-        } else {
-            logger.error("Já existe um produto com esse id");
+    public boolean inserir(Produto produto) {
+        Connection conexao = Conexao.conectar();
+        String sql = " INSERT INTO " + tabela + " ( produto_id, nome, descricao, qtdEstoque, preco, ativo ) VALUES (?, ?, ?, ?, ?, ?); ";
+        try (PreparedStatement statement = conexao.prepareStatement(sql)) {
+            statement.setInt(1, produto.getId());
+            statement.setString(2, produto.getNome());
+            statement.setString(3, produto.getDescricao());
+            statement.setInt(4, produto.getQtdEstoque());
+            statement.setFloat(5, produto.getPreco());
+            statement.setBoolean(6, produto.isAtivo());
+            statement.executeUpdate();
+            statement.close();
+            conexao.close();
+            return true;
+        } catch (SQLException e) {
+            System.out.println("Erro ao inserir produto no banco de dados."+e);
+            return false;
         }
+    }
+
+    public boolean alterar(Produto produto) {
+        Connection conexao = Conexao.conectar();
+        String sql = " UPDATE " + tabela + " SET produto_id = ?, nome = ?, descricao = ?, qtdEstoque = ?, preco = ?, ativo = ? WHERE "+tabela+"_id = ? ";
+        try (PreparedStatement statement = conexao.prepareStatement(sql)) {
+            statement.setInt(1, produto.getId());
+            statement.setString(2, produto.getNome());
+            statement.setString(3, produto.getDescricao());
+            statement.setInt(4, produto.getQtdEstoque());
+            statement.setFloat(5, produto.getPreco());
+            statement.setBoolean(6, produto.isAtivo());
+            statement.setInt(7, produto.getId());
+            statement.executeUpdate();
+            statement.close();
+            conexao.close();
+            return true;
+        } catch (SQLException e) {
+            System.out.println("Erro ao alterar dados do produto no banco de dados.");
+            return false;
+        }
+    }
+
+    public boolean excluir(Produto produto) {
+        Connection conexao = Conexao.conectar();
+        String sql = " DELETE FROM " + tabela + "  WHERE "+tabela+"_id = ? ";
+        try (PreparedStatement statement = conexao.prepareStatement(sql)) {
+            statement.setInt(1, produto.getId());
+            statement.executeUpdate();
+            statement.close();
+            conexao.close();
+            return true;
+        } catch (SQLException e) {
+            System.out.println("Erro ao excluir produto no banco de dados.");
+            return false;
+        }
+    }
+
+    public Produto procurarPorId(int id) {
+        Connection conexao = Conexao.conectar();
+        String sql = " SELECT * FROM " + tabela + " WHERE "+tabela+"_id = ? ";
+        try (PreparedStatement statement = conexao.prepareStatement(sql)) {
+            statement.setInt(1, id);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    Produto produto = new Produto();
+                    produto.setId(resultSet.getInt("produto_id"));
+                    produto.setNome(resultSet.getString("nome"));
+                    produto.setDescricao(resultSet.getString("descricao"));
+                    produto.setQtdEstoque(resultSet.getInt("qtdEstoque"));
+                    produto.setPreco(resultSet.getFloat("preco"));
+                    produto.setAtivo(resultSet.getBoolean("ativo"));
+                    produto.setFornecedorId(resultSet.getInt("fornecedor_id"));
+                    statement.close();
+                    conexao.close();
+                    return produto;
+                } else {
+                    statement.close();
+                    conexao.close();
+                    System.err.println("produto não encontrado para o ID: " + id);
+                    return null;
+                }
+            }            
+        } catch (SQLException e) {
+            System.out.println("Erro ao alterar dados do produto no banco de dados.");
+            return null;
+        }
+    }
+
+    public Produto procurarPorNome(String nome) {
+        Connection conexao = Conexao.conectar();
+        String sql = " SELECT * FROM " + tabela + " WHERE nome = ? ";
+        try (PreparedStatement statement = conexao.prepareStatement(sql)) {
+            statement.setString(1, nome);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    Produto produto = new Produto();
+                    produto.setId(resultSet.getInt("produto_id"));
+                    produto.setNome(resultSet.getString("nome"));
+                    produto.setDescricao(resultSet.getString("descricao"));
+                    produto.setQtdEstoque(resultSet.getInt("qtdEstoque"));
+                    produto.setPreco(resultSet.getFloat("preco"));
+                    produto.setAtivo(resultSet.getBoolean("ativo"));
+                    produto.setFornecedorId(resultSet.getInt("fornecedor_id"));
+                    statement.close();
+                    conexao.close();
+                    return produto;
+                } else {
+                    statement.close();
+                    conexao.close();
+                    System.err.println("produto não encontrado para o ID: " + nome);
+                    return null;
+                }
+            }            
+        } catch (SQLException e) {
+            System.out.println("Erro ao alterar dados do produto no banco de dados.");
+            return null;
+        }
+    }
+
+    public boolean existe(Produto produto) {
+        Connection conexao = Conexao.conectar();
+        String sql = " SELECT * FROM " + tabela + " WHERE nome = ? OR "+tabela+"_id = ?";
+        try (PreparedStatement statement = conexao.prepareStatement(sql)) {
+            statement.setString(1, produto.getNome());
+            statement.setInt(2, produto.getId());
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    statement.close();
+                    conexao.close();
+                    return true;
+                }
+            }            
+        } catch (SQLException e) {
+            System.out.println("Erro ao verificar se existe produto no banco de dados.");
+            return false;
+        }
+        return false;
+    }
+
+    public boolean existePorNome(String nome) {
+        Connection conexao = Conexao.conectar();
+        String sql = " SELECT * FROM " + tabela + " WHERE nome = ? ";
+        try (PreparedStatement statement = conexao.prepareStatement(sql)) {
+            statement.setString(1, nome);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    statement.close();
+                    conexao.close();
+                    return true;
+                }
+            }            
+        } catch (SQLException e) {
+            System.out.println("Erro ao verificar se existe produto no banco de dados.");
+            return false;
+        }
+        return false;
+    }
+
+    public boolean existePorId(int id) {
+        Connection conexao = Conexao.conectar();
+        String sql = " SELECT * FROM " + tabela + " WHERE "+tabela+"_id = ? ";
+        try (PreparedStatement statement = conexao.prepareStatement(sql)) {
+            statement.setInt(1, id);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    statement.close();
+                    conexao.close();
+                    return true;
+                }
+            }            
+        } catch (SQLException e) {
+            System.out.println("Erro ao verificar se existe produto no banco de dados.");
+            return false;
+        }
+        return false;
     }
 
     private void atualizarMapProdutos() {
@@ -52,87 +200,88 @@ public class ProdutoDAO {
                         produto.setId(resultSet.getInt("produto_id"));
                         produto.setNome(resultSet.getString("nome"));
                         produto.setDescricao(resultSet.getString("descricao"));
-                        produto.setPreco(resultSet.getFloat("preco"));
                         produto.setQtdEstoque(resultSet.getInt("qtdEstoque"));
+                        produto.setPreco(resultSet.getFloat("preco"));
                         produto.setAtivo(resultSet.getBoolean("ativo"));
-                        mapProdutos.put(produto.getId(), produto);
+                        produto.setFornecedorId(resultSet.getInt("fornecedor_id"));
+                        mapProdutos.put(produto.getNome(), produto);
                     }
                 }
             } finally {
                 connection.close();
             }
         } catch (SQLException e) {
-            logger.error("Erro ao atualizar lista de produtos: ", e.getMessage());
             throw new RuntimeException("Erro ao atualizar lista de produtos", e);
         }
     }
 
-    public HashMap<Integer, Produto> listarProdutos() {
+    public HashMap<String, Produto> listarProdutos() {
         atualizarMapProdutos();
         return new HashMap<>(mapProdutos);
     }
 
-    public void excluirProduto(int id) {
+    public boolean desativarPorId(int id) {
         try (Connection connection = Conexao.conectar()) {
-            String sql = "DELETE FROM produto WHERE produto_id = ?";
+            String sql = "UPDATE produto SET ativo = ? WHERE produto_id = ?;";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
-                statement.setInt(1, id);
+                statement.setBoolean(1, false);
+                statement.setInt(2, id);
                 statement.executeUpdate();
-            } finally {
                 Conexao.fecharConexao(connection);
+                return true;
             }
         } catch (SQLException e) {
-            logger.error("Erro ao excluir produto: " + e.getMessage());
-            throw new RuntimeException("Erro ao excluir produto", e);
+            System.out.println("Erro ao desativar produto.");
+            return false;
         }
     }
 
-    public void atualizarProduto(Produto produto) {
+    public boolean ativarPorId(int id) {
         try (Connection connection = Conexao.conectar()) {
-            String sql = "UPDATE produto SET produto_id = ?, nome = ?, descricao = ?, preco = ?, qtdEstoque = ?, ativo = ? WHERE produto_id = ?;";
+            String sql = "UPDATE produto SET ativo = ? WHERE produto_id = ?;";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
-                statement.setInt(1, produto.getId());
-                statement.setString(2, produto.getNome());
-                statement.setString(3, produto.getDescricao());
-                statement.setFloat(4, produto.getPreco());
-                statement.setInt(5, produto.getQtdEstoque());
-                statement.setBoolean(6, produto.isAtivo());
-                statement.setInt(7, produto.getId());
+                statement.setBoolean(1, true);
+                statement.setInt(2, id);
                 statement.executeUpdate();
-            } finally {
                 Conexao.fecharConexao(connection);
+                return true;
             }
         } catch (SQLException e) {
-            logger.error("Erro ao atualizar produto: " + e.getMessage());
-            throw new RuntimeException("Erro ao atualizar produto", e);
+            System.err.println("Erro ao ativar produto por id.");
+            return false;
         }
     }
 
-    public Produto buscarProdutoPorId(int id) {
-        Produto produto = new Produto();
+    public boolean desativarPorNome(String nome) {
         try (Connection connection = Conexao.conectar()) {
-            String sql = "SELECT * FROM produto WHERE produto_id = ?";
+            String sql = "UPDATE produto SET ativo = ? WHERE nome = ?;";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
-                statement.setInt(1, id);
-                try (ResultSet resultSet = statement.executeQuery()) {
-                    if (resultSet.next()) {
-                        produto.setId(resultSet.getInt("produto_id"));
-                        produto.setNome(resultSet.getString("nome"));
-                        produto.setDescricao(resultSet.getString("descricao"));
-                        produto.setPreco(resultSet.getFloat("preco"));
-                        produto.setQtdEstoque(resultSet.getInt("qtdEstoque"));
-                        produto.setAtivo(resultSet.getBoolean("ativo"));
-                    } else {
-                        logger.warn("Produto não encontrado para o ID: " + id);
-                    }
-                }
-            } finally {
+                statement.setBoolean(1, false);
+                statement.setString(2, nome);
+                statement.executeUpdate();
                 Conexao.fecharConexao(connection);
+                return true;
             }
         } catch (SQLException e) {
-            logger.error("Erro ao buscar produto por id: " + e.getMessage());
-            throw new RuntimeException("Erro ao buscar produto por id", e);
+            System.err.println("Erro ao desativar produto.");
+            return false;
         }
-        return produto;
     }
+
+    public boolean ativarPorNome(String nome) {
+        try (Connection connection = Conexao.conectar()) {
+            String sql = "UPDATE produto SET ativo = ? WHERE nome = ?;";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setBoolean(1, true);
+                statement.setString(2, nome);
+                statement.executeUpdate();
+                Conexao.fecharConexao(connection);
+                return true;
+            }
+        } catch (SQLException e) {
+            System.err.println("Erro ao ativar produto.");
+            return false;
+        }
+    }
+
 }

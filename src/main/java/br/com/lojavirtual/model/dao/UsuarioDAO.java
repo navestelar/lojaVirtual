@@ -279,24 +279,4 @@ public class UsuarioDAO {
             return false;
         }
     }
-
-    public boolean atualizar(Usuario usuario) {
-        try (Connection connection = Conexao.conectar()) {
-            String sql = "UPDATE usuario SET nome = ?, username = ?, senha = ?, tipo = ?, ativo = ? WHERE usuario_id = ?;";
-            try (PreparedStatement statement = connection.prepareStatement(sql)) {
-                statement.setString(1, usuario.getNome());
-                statement.setString(2, usuario.getUsername());
-                statement.setString(3, usuario.getSenha());
-                statement.setString(4, usuario.getTipo());
-                statement.setBoolean(5, usuario.isAtivo());
-                statement.setInt(6, usuario.getId());
-                statement.executeUpdate();
-                Conexao.fecharConexao(connection);
-                return true;
-            }
-        } catch (SQLException e) {
-            System.err.println("Erro ao atualizar usuário.");
-            return false;
-        }
-    }
 }
