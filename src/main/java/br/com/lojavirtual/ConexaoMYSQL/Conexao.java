@@ -3,14 +3,13 @@ package br.com.lojavirtual.ConexaoMYSQL;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
-// import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
 public class Conexao {
 
-    private static final String URL = "jdbc:mysql://127.0.0.1:3306/lojavirtual";
-    private static final String USUARIO = "root";
+    private static final String URL = "jdbc:postgresql://172.18.150.143:5432/ecommerce";
+    private static final String USUARIO = "postgres";
     private static final String SENHA = "123456";
 
     private static final HikariConfig config;
@@ -21,7 +20,7 @@ public class Conexao {
         config.setJdbcUrl(URL);
         config.setUsername(USUARIO);
         config.setPassword(SENHA);
-        config.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        config.setDriverClassName("org.postgresql.Driver");
 
         config.setMaximumPoolSize(10);
         config.setMinimumIdle(5);

@@ -1,30 +1,24 @@
 package br.com.lojavirtual.model.DTO;
 
-public class ItemCarrinho {
-    private int id;
+public class ItemCarrinho implements DefaultInterface {
+    private int itemcarrinho_id;
     private int quantidade;
-    private int produtoId;
-    private int carrinhoId;
-    private Produto produto;
-    public Produto getProduto() {
-        return produto;
-    }
-    public void setProduto(Produto produto) {
-        this.produto = produto;
-    }
+    private int produto_id;
+    private int carrinho_id;
+
     public ItemCarrinho(int id, int quantidade, int produtoId, int carrinhoId) {
-        this.id = id;
+        this.itemcarrinho_id = id;
         this.quantidade = quantidade;
-        this.produtoId = produtoId;
-        this.carrinhoId = carrinhoId;
+        this.produto_id = produtoId;
+        this.carrinho_id = carrinhoId;
     }
     public ItemCarrinho() {
     }
     public int getId() {
-        return id;
+        return itemcarrinho_id;
     }
     public void setId(int id) {
-        this.id = id;
+        this.itemcarrinho_id = id;
     }
     public int getQuantidade() {
         return quantidade;
@@ -33,20 +27,20 @@ public class ItemCarrinho {
         this.quantidade = quantidade;
     }
     public int getProdutoId() {
-        return produtoId;
+        return produto_id;
     }
     public void setProdutoId(int produtoId) {
-        this.produtoId = produtoId;
+        this.produto_id = produtoId;
     }
     public int getCarrinhoId() {
-        return carrinhoId;
+        return carrinho_id;
     }
     public void setCarrinhoId(int carrinhoId) {
-        this.carrinhoId = carrinhoId;
+        this.carrinho_id = carrinhoId;
     }
     @Override
     public String toString() {
-        return "ItemCarrinho [id=" + id + ", quantidade=" + quantidade + ", produtoId=" + produtoId + ", carrinhoId="
-                + carrinhoId + "]";
+        return "ItemCarrinho [id=" + itemcarrinho_id + ", quantidade=" + quantidade + ", produtoId=" + produto_id + ", carrinhoId="
+                + carrinho_id + "]";
     }
 }

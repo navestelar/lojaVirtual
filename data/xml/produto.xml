@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<items>
+    <item xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="produto">
+        <ativo>false</ativo>
+        <descricao>Descrição do Produto Atualizado</descricao>
+        <fornecedor_id>2</fornecedor_id>
+        <id>1</id>
+        <nome>Produto Atualizado</nome>
+        <preco>150.00</preco>
+        <qtdEstoque>20</qtdEstoque>
+    </item>
+    <item xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="produto">
+        <ativo>true</ativo>
+        <descricao>Descrição do Produto 1</descricao>
+        <fornecedor_id>1</fornecedor_id>
+        <id>1</id>
+        <nome>Produto 1</nome>
+        <preco>100.00</preco>
+        <qtdEstoque>10</qtdEstoque>
+    </item>
+    <item xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="produto">
+        <ativo>true</ativo>
+        <descricao>Descrição do Produto 2</descricao>
+        <fornecedor_id>2</fornecedor_id>
+        <id>2</id>
+        <nome>Produto 2 Atualizado</nome>
+        <preco>200.00</preco>
+        <qtdEstoque>20</qtdEstoque>
+    </item>
+</items>

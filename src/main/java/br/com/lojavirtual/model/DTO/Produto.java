@@ -1,39 +1,22 @@
 package br.com.lojavirtual.model.DTO;
 
-import java.util.HashMap;
+import java.math.BigDecimal;
 
-public class Produto {
-    private int id;
+public class Produto implements DefaultInterface {
+    private int produto_id;
     private String nome;
     private String descricao;
     private int qtdEstoque;
-    private float preco;
+    private BigDecimal preco;
     private boolean ativo;
-    private int fornecedorId;
-    private HashMap<Integer, Imagem> imagens;
-    public HashMap<Integer, Imagem> getImagens() {
-        return imagens;
-    }
-    public void setImagens(HashMap<Integer, Imagem> imagens) {
-        this.imagens = imagens;
-    }
-    public Produto(int id, String nome, String descricao, int qtdEstoque, float preco, boolean ativo,
-            int fornecedorId) {
-        this.id = id;
-        this.nome = nome;
-        this.descricao = descricao;
-        this.qtdEstoque = qtdEstoque;
-        this.preco = preco;
-        this.ativo = ativo;
-        this.fornecedorId = fornecedorId;
-    }
+    private int fornecedor_id;
     public Produto() {
     }
     public int getId() {
-        return id;
+        return produto_id;
     }
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int produto_id) {
+        this.produto_id = produto_id;
     }
     public String getNome() {
         return nome;
@@ -53,10 +36,10 @@ public class Produto {
     public void setQtdEstoque(int qtdEstoque) {
         this.qtdEstoque = qtdEstoque;
     }
-    public float getPreco() {
+    public BigDecimal getPreco() {
         return preco;
     }
-    public void setPreco(float preco) {
+    public void setPreco(BigDecimal preco) {
         this.preco = preco;
     }
     public boolean isAtivo() {
@@ -65,15 +48,15 @@ public class Produto {
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
-    public int getFornecedorId() {
-        return fornecedorId;
+    public int getFornecedor_id() {
+        return fornecedor_id;
     }
-    public void setFornecedorId(int fornecedorId) {
-        this.fornecedorId = fornecedorId;
+    public void setFornecedor_id(int fornecedor_id) {
+        this.fornecedor_id = fornecedor_id;
     }
     @Override
     public String toString() {
-        return "Produto [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", qtdEstoque=" + qtdEstoque
-                + ", preco=" + preco + ", ativo=" + ativo + ", fornecedorId=" + fornecedorId + "]";
+      return "Produto [produto_id=" + produto_id + ", nome=" + nome + ", descricao=" + descricao + ", qtdEstoque="
+          + qtdEstoque + ", preco=" + preco + ", ativo=" + ativo + ", fornecedor_id=" + fornecedor_id + "]";
     }
 }

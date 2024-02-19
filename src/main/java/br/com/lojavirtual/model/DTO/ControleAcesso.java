@@ -1,21 +1,21 @@
 package br.com.lojavirtual.model.DTO;
 
-public class ControleAcesso {
-    private int id;
+public class ControleAcesso implements DefaultInterface {
+    private int controleAcesso_id;
     private String permissoes;
-    private int userId;
+    private int usuario_id;
     public ControleAcesso(int id, String permissoes, int userId) {
-        this.id = id;
+        this.controleAcesso_id = id;
         this.permissoes = permissoes;
-        this.userId = userId;
+        this.usuario_id = userId;
     }
     public ControleAcesso() {
     }
     public int getId() {
-        return id;
+        return controleAcesso_id;
     }
     public void setId(int id) {
-        this.id = id;
+        this.controleAcesso_id = id;
     }
     public String getPermissoes() {
         return permissoes;
@@ -24,13 +24,13 @@ public class ControleAcesso {
         this.permissoes = permissoes;
     }
     public int getUserId() {
-        return userId;
+        return usuario_id;
     }
     public void setUserId(int userId) {
-        this.userId = userId;
+        this.usuario_id = userId;
     }
     @Override
     public String toString() {
-        return "ControleAcesso [id=" + id + ", permissoes=" + permissoes + ", userId=" + userId + "]";
+        return "ControleAcesso [id=" + controleAcesso_id + ", permissoes=" + permissoes + ", userId=" + usuario_id + "]";
     }
 }

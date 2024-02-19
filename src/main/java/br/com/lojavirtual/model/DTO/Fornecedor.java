@@ -1,21 +1,21 @@
 package br.com.lojavirtual.model.DTO;
 
-public class Fornecedor {
-    private int id;
+public class Fornecedor implements DefaultInterface {
+    private int fornecedor_id;
     private String nome;
     private String contato;
     public Fornecedor(int id, String nome, String contato) {
-        this.id = id;
+        this.fornecedor_id = id;
         this.nome = nome;
         this.contato = contato;
     }
     public Fornecedor() {
     }
     public int getId() {
-        return id;
+        return fornecedor_id;
     }
     public void setId(int id) {
-        this.id = id;
+        this.fornecedor_id = id;
     }
     public String getNome() {
         return nome;
@@ -31,6 +31,6 @@ public class Fornecedor {
     }
     @Override
     public String toString() {
-        return "Fornecedor [id=" + id + ", nome=" + nome + ", contato=" + contato + "]";
+        return "Fornecedor [id=" + fornecedor_id + ", nome=" + nome + ", contato=" + contato + "]";
     }
 }

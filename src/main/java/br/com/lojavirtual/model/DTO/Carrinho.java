@@ -1,45 +1,37 @@
 package br.com.lojavirtual.model.DTO;
 
-import java.util.HashMap;
+public class Carrinho implements DefaultInterface {
+    private int carrinho_id;
+    private int cliente_id;
+    private int formaPagamento_id;
 
-public class Carrinho {
-    private int id;
-    private int clienteId;
-    private int formaPagamentoId;
-    private HashMap<String, ItemCarrinho> itemsCarrinho;
-    public HashMap<String, ItemCarrinho> getItemsCarrinho() {
-        return itemsCarrinho;
-    }
-    public void setItemsCarrinho(HashMap<String, ItemCarrinho> itemsCarrinho) {
-        this.itemsCarrinho = itemsCarrinho;
-    }
     public Carrinho(int id, int clienteId, int formaPagamentoId) {
-        this.id = id;
-        this.clienteId = clienteId;
-        this.formaPagamentoId = formaPagamentoId;
+        this.carrinho_id = id;
+        this.cliente_id = clienteId;
+        this.formaPagamento_id = formaPagamentoId;
     }
     public Carrinho() {
     }
     public int getId() {
-        return id;
+        return carrinho_id;
     }
     public void setId(int id) {
-        this.id = id;
+        this.carrinho_id = id;
     }
     public int getClienteId() {
-        return clienteId;
+        return cliente_id;
     }
     public void setClienteId(int clienteId) {
-        this.clienteId = clienteId;
+        this.cliente_id = clienteId;
     }
     public int getFormaPagamentoId() {
-        return formaPagamentoId;
+        return formaPagamento_id;
     }
     public void setFormaPagamentoId(int formaPagamentoId) {
-        this.formaPagamentoId = formaPagamentoId;
+        this.formaPagamento_id = formaPagamentoId;
     }
     @Override
     public String toString() {
-        return "Carrinho [id=" + id + ", clienteId=" + clienteId + ", formaPagamentoId=" + formaPagamentoId + "]";
+        return "Carrinho [id=" + carrinho_id + ", clienteId=" + cliente_id + ", formaPagamentoId=" + formaPagamento_id + "]";
     }    
 }

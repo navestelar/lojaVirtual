@@ -1,0 +1,3 @@
+{"produto_id":1,"nome":"Produto Atualizado","descricao":"Descrição do Produto Atualizado","qtdEstoque":20,"preco":150.00,"ativo":false,"fornecedor_id":2}
+{"produto_id":1,"nome":"Produto 1","descricao":"Descrição do Produto 1","qtdEstoque":10,"preco":100.00,"ativo":true,"fornecedor_id":1}
+{"produto_id":2,"nome":"Produto 2 Atualizado","descricao":"Descrição do Produto 2","qtdEstoque":20,"preco":200.00,"ativo":true,"fornecedor_id":2}

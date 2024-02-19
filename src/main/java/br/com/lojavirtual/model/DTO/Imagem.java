@@ -1,23 +1,23 @@
 package br.com.lojavirtual.model.DTO;
 
-public class Imagem {
-    private int id;
+public class Imagem implements DefaultInterface {
+    private int imagem_id;
     private String url;
     private String descricao;
-    private int produtoId;
+    private int produto_id;
     public Imagem(int id, String url, String descricao, int produtoId) {
-        this.id = id;
+        this.imagem_id = id;
         this.url = url;
         this.descricao = descricao;
-        this.produtoId = produtoId;
+        this.produto_id = produtoId;
     }
     public Imagem() {
     }
     public int getId() {
-        return id;
+        return imagem_id;
     }
     public void setId(int id) {
-        this.id = id;
+        this.imagem_id = id;
     }
     public String getUrl() {
         return url;
@@ -32,13 +32,13 @@ public class Imagem {
         this.descricao = descricao;
     }
     public int getProdutoId() {
-        return produtoId;
+        return produto_id;
     }
     public void setProdutoId(int produtoId) {
-        this.produtoId = produtoId;
+        this.produto_id = produtoId;
     }
     @Override
     public String toString() {
-        return "Imagem [id=" + id + ", url=" + url + ", descricao=" + descricao + ", produtoId=" + produtoId + "]";
+        return "Imagem [id=" + imagem_id + ", url=" + url + ", descricao=" + descricao + ", produtoId=" + produto_id + "]";
     }
 }

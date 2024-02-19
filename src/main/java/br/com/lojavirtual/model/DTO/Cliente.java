@@ -1,21 +1,13 @@
 package br.com.lojavirtual.model.DTO;
 
-import java.util.HashMap;
-
 public class Cliente extends Usuario {
-    private int id;
+    private int cliente_id;
     private String email;
     private String telefone;
     private String endereco;
     private String cep;
-    private int userId;
-    private HashMap<Integer, Carrinho> carrinhos;
-    public HashMap<Integer, Carrinho> getCarrinhos() {
-        return carrinhos;
-    }
-    public void setCarrinhos(HashMap<Integer, Carrinho> carrinhos) {
-        this.carrinhos = carrinhos;
-    }
+    private int usuario_id;
+
     public Cliente(int id, String nome, String username, String senha, String tipo, boolean ativo, int id2,
             String email, String telefone, String endereco, String cep, int userId) {
         super(id, nome, username, senha, tipo, ativo);
@@ -24,23 +16,23 @@ public class Cliente extends Usuario {
         this.telefone = telefone;
         this.endereco = endereco;
         this.cep = cep;
-        this.userId = userId;
+        this.usuario_id = userId;
     }
     public Cliente(int id, String email, String telefone, String endereco, String cep, int userId) {
-        this.id = id;
+        this.cliente_id = id;
         this.email = email;
         this.telefone = telefone;
         this.endereco = endereco;
         this.cep = cep;
-        this.userId = userId;
+        this.usuario_id = userId;
     }
     public Cliente() {
     }
     public int getId() {
-        return id;
+        return cliente_id;
     }
     public void setId(int id) {
-        this.id = id;
+        this.cliente_id = id;
     }
     public String getEmail() {
         return email;
@@ -67,10 +59,9 @@ public class Cliente extends Usuario {
         this.cep = cep;
     }
     public int getUserId() {
-        return userId;
+        return usuario_id;
     }
     public void setUserId(int userId) {
-        this.userId = userId;
+        this.usuario_id = userId;
     }
-    
 }

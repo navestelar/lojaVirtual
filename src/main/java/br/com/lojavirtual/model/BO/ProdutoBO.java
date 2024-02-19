@@ -1,85 +1,40 @@
 package br.com.lojavirtual.model.BO;
 
-import java.util.HashMap;
+import java.util.List;
 
-import br.com.lojavirtual.model.DAO.ProdutoDAO;
+import br.com.lojavirtual.model.DAO.DataPersistence;
+import br.com.lojavirtual.model.DAO.PersistenceFactory;
+import br.com.lojavirtual.model.DAO.PersistenceType;
 import br.com.lojavirtual.model.DTO.Produto;
 
 public class ProdutoBO {
-    public boolean inserir(Produto produto) {
-        if  (!existe(produto)) {
-            ProdutoDAO produtoDAO = new ProdutoDAO();
-            return produtoDAO.inserir(produto);
-        } 
-        
-        if (existePorNome(produto.getNome())) {
-            System.out.println("Já existe um produto com esse nome");
-        }
+  private DataPersistence<Produto> dataPersistence;
 
-        return false;
-    }
+  public ProdutoBO(PersistenceType persistenceType) {
+    this.dataPersistence = PersistenceFactory.setDataPersistence(Produto.class, persistenceType);
+  }
 
-    public boolean alterar(Produto produto) {
-        if (existe(produto)) {
-            ProdutoDAO produtoDAO = new ProdutoDAO();
-            return produtoDAO.alterar(produto);
-        }
-        System.err.println("Esse produto não existe");
-        return false;
+  public void cadastrarProduto(Produto produto) {
+    if (dataPersistence.read(produto.getId()) == null) {
+      dataPersistence.create(produto);
+    } else {
+      System.out.println("Já existe um produto com esse id.");
     }
+  }
 
-    public boolean excluir(Produto produto) {
-        ProdutoDAO produtoDAO = new ProdutoDAO();
-        return produtoDAO.excluir(produto);
-    }
+  public Produto buscarProduto(int id) {
+    return dataPersistence.read(id);
+  }
 
-    public Produto procurarPorId(int id) {
-        ProdutoDAO produtoDAO = new ProdutoDAO();
-        return produtoDAO.procurarPorId(id);
-    }
+  public void atualizarProduto(Produto produto) {
+    dataPersistence.update(produto);
+  }
 
-    public Produto procurarPorNome(String nome) {
-        ProdutoDAO produtoDAO = new ProdutoDAO();
-        return produtoDAO.procurarPorNome(nome);
-    }
+  public void deletarProduto(int id) {
+    dataPersistence.delete(id);
+  }
 
-    public boolean existe(Produto produto) {
-        ProdutoDAO produtoDAO = new ProdutoDAO();
-        return produtoDAO.existe(produto);
-    }
-
-    public boolean existePorId(int id) {
-        ProdutoDAO produtoDAO = new ProdutoDAO();
-        return produtoDAO.existePorId(id);
-    }
-
-    public boolean existePorNome(String nome) {
-        ProdutoDAO produtoDAO = new ProdutoDAO();
-        return produtoDAO.existePorNome(nome);
-    }
-
-    public HashMap<String, Produto> listarProdutos() {
-        ProdutoDAO produtoDAO = new ProdutoDAO();
-        return produtoDAO.listarProdutos();
-    }
-
-    public boolean desativarPorId(int id) {
-        ProdutoDAO produtoDAO = new ProdutoDAO();
-        return produtoDAO.desativarPorId(id);
-    }
-
-    public boolean ativarPorId(int id) {
-        ProdutoDAO produtoDAO = new ProdutoDAO();
-        return produtoDAO.ativarPorId(id);
-    }
-
-    public boolean desativarPorNome(String nome) {
-        ProdutoDAO produtoDAO = new ProdutoDAO();
-        return produtoDAO.desativarPorNome(nome);
-    }
-
-    public boolean ativarPorNome(String nome) {
-        ProdutoDAO produtoDAO = new ProdutoDAO();
-        return produtoDAO.ativarPorNome(nome);
-    }
+  public List<Produto> listarProdutos() {
+    return dataPersistence.readAll();
+  }
 }
