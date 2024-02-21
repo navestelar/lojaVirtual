@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<items>
+    <item xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="formaDePagamento">
+        <id>1</id>
+        <tipo>TipoPagamento1</tipo>
+    </item>
+    <item xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="formaDePagamento">
+        <id>2</id>
+        <tipo>TipoPagamento2</tipo>
+    </item>
+    <item xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="formaDePagamento">
+        <id>3</id>
+        <tipo>TipoPagamento1</tipo>
+    </item>
+    <item xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="formaDePagamento">
+        <id>4</id>
+        <tipo>TipoPagamento2</tipo>
+    </item>
+</items>

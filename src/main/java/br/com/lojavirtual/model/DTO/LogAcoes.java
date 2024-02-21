@@ -1,15 +1,15 @@
 package br.com.lojavirtual.model.DTO;
 
-public class LogAcoes implements DefaultInterface {
+import br.com.lojavirtual.interfaces.DefaultEntitiesInterface;
+
+public class LogAcoes implements DefaultEntitiesInterface {
     private int log_id;
     private String acao;
     private String log_data;
     private int usuario_id;
     
-    public LogAcoes(int id, String acao, String data, int userId) {
-        this.log_id = id;
+    public LogAcoes(String acao, int userId) {
         this.acao = acao;
-        this.log_data = data;
         this.usuario_id = userId;
     }
     public LogAcoes() {

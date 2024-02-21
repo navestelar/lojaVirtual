@@ -11,12 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.lojavirtual.ConexaoMYSQL.Conexao;
-import br.com.lojavirtual.model.DTO.DefaultInterface;
+import br.com.lojavirtual.interfaces.DataPersistence;
+import br.com.lojavirtual.interfaces.DefaultEntitiesInterface;
 
-public class DatabasePersistence<T extends DefaultInterface> implements DataPersistence<T> {
+class DatabasePersistence<T extends DefaultEntitiesInterface> implements DataPersistence<T> {
   private Class<T> clazz;
 
-  public DatabasePersistence(Class<T> clazz) {
+  protected DatabasePersistence(Class<T> clazz) {
     this.clazz = clazz;
   }
 
@@ -44,7 +45,6 @@ public class DatabasePersistence<T extends DefaultInterface> implements DataPers
         e.printStackTrace();
       }
     }
-    // Remove a última vírgula e espaço em branco das strings SQL
     if (sql.endsWith(", ")) {
       sql = sql.substring(0, sql.length() - 2);
     }
@@ -54,7 +54,6 @@ public class DatabasePersistence<T extends DefaultInterface> implements DataPers
     sql += ")";
     values += ")";
     sql += values;
-
     try (Connection connection = Conexao.conectar();
         PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
       int paramIndex = 1;
@@ -71,6 +70,7 @@ public class DatabasePersistence<T extends DefaultInterface> implements DataPers
   public T read(int id) {
     String tableName = clazz.getSimpleName().toLowerCase();
     String sql = "SELECT * FROM " + tableName + " WHERE " + tableName + "_id = ?";
+
     try (Connection connection = Conexao.conectar();
         PreparedStatement statement = connection.prepareStatement(sql)) {
       statement.setInt(1, id);
@@ -123,7 +123,6 @@ public class DatabasePersistence<T extends DefaultInterface> implements DataPers
       }
     }
 
-    // Remove a última vírgula e espaço em branco da string SQL
     if (sql.endsWith(", ")) {
       sql = sql.substring(0, sql.length() - 2);
     }
@@ -136,7 +135,6 @@ public class DatabasePersistence<T extends DefaultInterface> implements DataPers
       for (Object value : valuesList) {
         statement.setObject(paramIndex++, value);
       }
-      // Define o valor do parâmetro para a cláusula WHERE
       statement.setObject(paramIndex, idValue);
       statement.executeUpdate();
     } catch (SQLException e) {
@@ -190,4 +188,18 @@ public class DatabasePersistence<T extends DefaultInterface> implements DataPers
     }
     return resultList;
   }
+
+  @Override
+  public int getNextId() {
+    List<T> objects = this.readAll();
+    int maxId = 0;
+  
+    for (T object : objects) {
+      if (object.getId() > maxId) {
+        maxId = object.getId();
+      }
+    }
+  
+    return maxId + 1;
+  }  
 }

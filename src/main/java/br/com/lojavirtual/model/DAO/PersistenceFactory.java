@@ -1,10 +1,12 @@
 
 package br.com.lojavirtual.model.DAO;
 
-import br.com.lojavirtual.model.DTO.DefaultInterface;
+import br.com.lojavirtual.interfaces.DataPersistence;
+import br.com.lojavirtual.interfaces.DefaultEntitiesInterface;
+import br.com.lojavirtual.interfaces.PersistenceType;
 
 public class PersistenceFactory {
-  public static <T extends DefaultInterface> DataPersistence<T> setDataPersistence(Class<T> clazz, PersistenceType format) {
+  public static <T extends DefaultEntitiesInterface> DataPersistence<T> setDataPersistence(Class<T> clazz, PersistenceType format) {
     switch (format) {
       case DATABASE:
         return new DatabasePersistence<>(clazz);

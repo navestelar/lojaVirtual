@@ -10,9 +10,10 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
-import br.com.lojavirtual.model.DTO.DefaultInterface;
+import br.com.lojavirtual.interfaces.DataPersistence;
+import br.com.lojavirtual.interfaces.DefaultEntitiesInterface;
 
-public class XmlPersistence<T extends DefaultInterface> implements DataPersistence<T> {
+class XmlPersistence<T extends DefaultEntitiesInterface> implements DataPersistence<T> {
   private Class<T> clazz;
   private File file;
 
@@ -87,6 +88,20 @@ public class XmlPersistence<T extends DefaultInterface> implements DataPersisten
     return resultList;
   }
 
+  @Override
+  public int getNextId() {
+    List<T> objects = this.readAll();
+    int maxId = 0;
+  
+    for (T object : objects) {
+      if (object.getId() > maxId) {
+        maxId = object.getId();
+      }
+    }
+  
+    return maxId + 1;
+  }
+  
   public void writeAll(List<T> objects) {
     XmlItems<T> xmlItems = new XmlItems<>();
     xmlItems.setItems(objects);

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<items>
+    <item xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="fornecedor">
+        <contato>ContatoFornecedor1</contato>
+        <id>1</id>
+        <nome>NomeFornecedor1</nome>
+    </item>
+    <item xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="fornecedor">
+        <contato>ContatoFornecedor2</contato>
+        <id>2</id>
+        <nome>NomeFornecedor2</nome>
+    </item>
+    <item xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="fornecedor">
+        <contato>ContatoFornecedor1</contato>
+        <id>3</id>
+        <nome>NomeFornecedor1</nome>
+    </item>
+    <item xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="fornecedor">
+        <contato>ContatoFornecedor2</contato>
+        <id>4</id>
+        <nome>NomeFornecedor2</nome>
+    </item>
+</items>

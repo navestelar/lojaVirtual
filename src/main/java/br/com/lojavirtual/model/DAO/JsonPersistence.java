@@ -11,9 +11,10 @@ import java.util.List;
 
 import com.google.gson.Gson;
 
-import br.com.lojavirtual.model.DTO.DefaultInterface;
+import br.com.lojavirtual.interfaces.DataPersistence;
+import br.com.lojavirtual.interfaces.DefaultEntitiesInterface;
 
-public class JsonPersistence<T extends DefaultInterface> implements DataPersistence<T> {
+class JsonPersistence<T extends DefaultEntitiesInterface> implements DataPersistence<T> {
   private Class<T> clazz;
   private File file;
   private Gson gson;
@@ -88,16 +89,32 @@ public class JsonPersistence<T extends DefaultInterface> implements DataPersiste
   @Override
   public List<T> readAll() {
     List<T> resultList = new ArrayList<>();
-    try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-      String line;
-      while ((line = reader.readLine()) != null) {
-        T obj = gson.fromJson(line, clazz);
-        resultList.add(obj);
+    if (file.exists() && file.length() > 0) {
+      try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+        String line;
+        while ((line = reader.readLine()) != null) {
+          T obj = gson.fromJson(line, clazz);
+          resultList.add(obj);
+        }
+      } catch (IOException e) {
+        e.printStackTrace();
       }
-    } catch (IOException e) {
-      e.printStackTrace();
     }
     return resultList;
+  }
+
+  @Override
+  public int getNextId() {
+    List<T> objects = this.readAll();
+    int maxId = 0;
+
+    for (T object : objects) {
+      if (object.getId() > maxId) {
+        maxId = object.getId();
+      }
+    }
+
+    return maxId + 1;
   }
 
   private void writeAll(List<T> objects) {
@@ -110,4 +127,5 @@ public class JsonPersistence<T extends DefaultInterface> implements DataPersiste
       e.printStackTrace();
     }
   }
+
 }

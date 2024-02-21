@@ -1,11 +1,12 @@
 package br.com.lojavirtual.model.DTO;
 
-public class Fornecedor implements DefaultInterface {
+import br.com.lojavirtual.interfaces.DefaultEntitiesInterface;
+
+public class Fornecedor implements DefaultEntitiesInterface {
     private int fornecedor_id;
     private String nome;
     private String contato;
-    public Fornecedor(int id, String nome, String contato) {
-        this.fornecedor_id = id;
+    public Fornecedor(String nome, String contato) {
         this.nome = nome;
         this.contato = contato;
     }

@@ -1,73 +1,123 @@
 package br.com.lojavirtual;
 
-import br.com.lojavirtual.model.DAO.DataPersistence;
-import br.com.lojavirtual.model.DAO.PersistenceFactory;
-import br.com.lojavirtual.model.DAO.PersistenceType;
+import java.util.List;
+
+import br.com.lojavirtual.interfaces.PersistenceType;
+import br.com.lojavirtual.model.BO.AdministradorBO;
+import br.com.lojavirtual.model.BO.CarrinhoBO;
+import br.com.lojavirtual.model.BO.ClienteBO;
+import br.com.lojavirtual.model.BO.ControleAcessoBO;
+import br.com.lojavirtual.model.BO.FormaDePagamentoBO;
+import br.com.lojavirtual.model.BO.FornecedorBO;
+import br.com.lojavirtual.model.BO.ImagemBO;
+import br.com.lojavirtual.model.BO.ItemCarrinhoBO;
+import br.com.lojavirtual.model.BO.LogAcoesBO;
+import br.com.lojavirtual.model.BO.ProdutoBO;
+import br.com.lojavirtual.model.BO.UsuarioBO;
+import br.com.lojavirtual.model.DTO.Administrador;
+import br.com.lojavirtual.model.DTO.Carrinho;
+import br.com.lojavirtual.model.DTO.Cliente;
+import br.com.lojavirtual.model.DTO.ControleAcesso;
+import br.com.lojavirtual.model.DTO.FormaDePagamento;
+import br.com.lojavirtual.model.DTO.Fornecedor;
+import br.com.lojavirtual.model.DTO.Imagem;
+import br.com.lojavirtual.model.DTO.ItemCarrinho;
+import br.com.lojavirtual.model.DTO.LogAcoes;
 import br.com.lojavirtual.model.DTO.Produto;
+import br.com.lojavirtual.model.DTO.Usuario;
 
 public class App {
     public static void main(String[] args) {
-        PersistenceType format = PersistenceType.XML;
-        DataPersistence<Produto> persistence = PersistenceFactory.setDataPersistence(Produto.class, format);
+        System.out.println("sssssssssss");
+        PersistenceType dataPersistence = PersistenceType.JSON;
+        
+        ClienteBO clienteBO = new ClienteBO(dataPersistence);
+        FornecedorBO fornecedorBO = new FornecedorBO(dataPersistence);
+        ProdutoBO produtoBO = new ProdutoBO(dataPersistence);
+        ImagemBO imagemBO = new ImagemBO(dataPersistence);
+        FormaDePagamentoBO formaDePagamentoBO = new FormaDePagamentoBO(dataPersistence);
+        CarrinhoBO carrinhoBO = new CarrinhoBO(dataPersistence);
+        LogAcoesBO logAcoesBO = new LogAcoesBO(dataPersistence);
+        ControleAcessoBO controleAcessoBO = new ControleAcessoBO(dataPersistence);
+        AdministradorBO administradorBO = new AdministradorBO(dataPersistence);
+        ItemCarrinhoBO itemCarrinhoBO = new ItemCarrinhoBO(dataPersistence);
+        UsuarioBO usuarioBO = new UsuarioBO(dataPersistence);
 
-        // Produto produto1 = new Produto();
-        // produto1.setId(1);
-        // produto1.setNome("Produto 1");
-        // produto1.setDescricao("Descrição do Produto 1");
-        // produto1.setQtdEstoque(10);
-        // produto1.setPreco(new BigDecimal("100.00"));
-        // produto1.setAtivo(true);
-        // produto1.setFornecedor_id(1);
+        // Exemplos de objetos para inserção
+        Usuario usuario1 = new Usuario("Nome1", "username1", "senha1", "tipo1", true);
+        Usuario usuario2 = new Usuario("Nome2", "username2", "senha2", "tipo2", true);
+        usuarioBO.cadastrarUsuario(usuario1);
+        usuarioBO.cadastrarUsuario(usuario2);
 
-        // Produto produto2 = new Produto();
-        // produto2.setId(2);
-        // produto2.setNome("Produto 2");
-        // produto2.setDescricao("Descrição do Produto 2");
-        // produto2.setQtdEstoque(20);
-        // produto2.setPreco(new BigDecimal("200.00"));
-        // produto2.setAtivo(true);
-        // produto2.setFornecedor_id(2);
+        Cliente cliente1 = new Cliente("email1", "telefone1", "endereco1", "cep1", usuario1.getId());
+        Cliente cliente2 = new Cliente("email2", "telefone2", "endereco2", "cep2", usuario2.getId());
+        clienteBO.cadastrarCliente(cliente1);
+        clienteBO.cadastrarCliente(cliente2);
 
-        // Produto produto3 = new Produto();
-        // produto3.setId(3);
-        // produto3.setNome("Produto 3");
-        // produto3.setDescricao("Descrição do Produto 3");
-        // produto3.setQtdEstoque(30);
-        // produto3.setPreco(new BigDecimal("300.00"));
-        // produto3.setAtivo(true);
-        // produto3.setFornecedor_id(3);
+        Fornecedor fornecedor1 = new Fornecedor("NomeFornecedor1", "ContatoFornecedor1");
+        Fornecedor fornecedor2 = new Fornecedor("NomeFornecedor2", "ContatoFornecedor2");
+        fornecedorBO.cadastrarFornecedor(fornecedor1);
+        fornecedorBO.cadastrarFornecedor(fornecedor2);
 
-        // // Criar produtos no arquivo XML
-        // persistence.create(produto1);
-        // persistence.create(produto2);
-        // persistence.create(produto3);
+        Produto produto1 = new Produto("NomeProduto1", "DescricaoProduto1", 10, 100.00, true, 1);
+        Produto produto2 = new Produto("NomeProduto2", "DescricaoProduto2", 20, 200.00, true, 2);
+        produtoBO.cadastrarProduto(produto1);
+        produtoBO.cadastrarProduto(produto2);
 
-        // // Ler todos os produtos do arquivo XML
-        // List<Produto> produtos = persistence.readAll();
-        // System.out.println("Produtos lidos do arquivo XML:");
-        // for (Produto produto : produtos) {
-        // System.out.println(produto);
-        // }
+        Imagem imagem1 = new Imagem("url1", "descricao1", produto1.getId());
+        Imagem imagem2 = new Imagem("url2", "descricao2", produto2.getId());
+        imagemBO.cadastrarImagem(imagem1);
+        imagemBO.cadastrarImagem(imagem2);
 
-        // // Atualizar o segundo produto
-        // produto2.setNome("Produto 2 Atualizado");
-        // persistence.update(produto2);
+        FormaDePagamento formaPagamento1 = new FormaDePagamento("TipoPagamento1");
+        FormaDePagamento formaPagamento2 = new FormaDePagamento("TipoPagamento2");
+        formaDePagamentoBO.cadastrarFormaDePagamento(formaPagamento1);
+        formaDePagamentoBO.cadastrarFormaDePagamento(formaPagamento2);
 
-        // // Ler o produto atualizado do arquivo XML
-        // Produto produtoLido = persistence.read(2);
-        // System.out.println("Produto 2 atualizado lido do arquivo XML:");
-        // System.out.println(produtoLido);
+        Carrinho carrinho1 = new Carrinho(cliente1.getId(), formaPagamento1.getId());
+        Carrinho carrinho2 = new Carrinho(cliente2.getId(), formaPagamento2.getId());
+        carrinhoBO.cadastrarCarrinho(carrinho1);
+        carrinhoBO.cadastrarCarrinho(carrinho2);
 
-        // // Deletar o terceiro produto
-        // persistence.delete(3);
+        LogAcoes LogAcoes1 = new LogAcoes("acao1", usuario1.getId());
+        LogAcoes LogAcoes2 = new LogAcoes("acao2", usuario2.getId());
+        logAcoesBO.cadastrarLogAcoes(LogAcoes1);
+        logAcoesBO.cadastrarLogAcoes(LogAcoes2);
 
-        // // Ler todos os produtos novamente após a exclusão
-        // produtos = persistence.readAll();
-        // System.out.println("Produtos após exclusão:");
-        // for (Produto produto : produtos) {
-        // System.out.println(produto);
-        // }
+        ControleAcesso controleAcesso1 = new ControleAcesso("permissoes1", usuario1.getId());
+        ControleAcesso controleAcesso2 = new ControleAcesso("permissoes2", usuario2.getId());
+        controleAcessoBO.cadastrarControleAcesso(controleAcesso1);
+        controleAcessoBO.cadastrarControleAcesso(controleAcesso2);
 
-        System.out.println(persistence.read(2));
+        Administrador administrador1 = new Administrador(usuario1.getId());
+        Administrador administrador2 = new Administrador(usuario2.getId());
+        administradorBO.cadastrarAdministrador(administrador1);
+        administradorBO.cadastrarAdministrador(administrador2);
+
+        ItemCarrinho itemCarrinho1 = new ItemCarrinho(1, produto1.getId(), carrinho1.getId());
+        ItemCarrinho itemCarrinho2 = new ItemCarrinho(2, produto2.getId(), carrinho2.getId());
+        itemCarrinhoBO.cadastrarItemCarrinho(itemCarrinho1);
+        itemCarrinhoBO.cadastrarItemCarrinho(itemCarrinho2);
+
+        // Exemplos de objetos para atualização
+        usuario1.setNome("Nome1 atualizado");
+        usuarioBO.atualizarUsuario(usuario1);
+
+        produto1.setNome("NomeProduto1 atualizado");
+        produtoBO.atualizarProduto(produto1);
+
+        // Exemplos de objetos para exclusão
+
+        // Exemplos de busca
+        List<Usuario> usuarios = usuarioBO.listarUsuarios();
+        List<Produto> produtos = produtoBO.listarProdutos();
+
+        for (Usuario usuario : usuarios) {
+            System.out.println(usuario);
+        }
+
+        for (Produto produto : produtos) {
+            System.out.println(produto);
+        }
     }
 }

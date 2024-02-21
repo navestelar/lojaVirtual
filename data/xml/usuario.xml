@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<items>
+    <item xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuario">
+        <ativo>true</ativo>
+        <id>1</id>
+        <nome>Nome1 atualizado</nome>
+        <senha>senha1</senha>
+        <tipo>tipo1</tipo>
+        <username>username1</username>
+    </item>
+    <item xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuario">
+        <ativo>true</ativo>
+        <id>2</id>
+        <nome>Nome2</nome>
+        <senha>senha2</senha>
+        <tipo>tipo2</tipo>
+        <username>username2</username>
+    </item>
+    <item xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuario">
+        <ativo>true</ativo>
+        <id>3</id>
+        <nome>Nome1 atualizado</nome>
+        <senha>senha1</senha>
+        <tipo>tipo1</tipo>
+        <username>username1</username>
+    </item>
+    <item xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="usuario">
+        <ativo>true</ativo>
+        <id>4</id>
+        <nome>Nome2</nome>
+        <senha>senha2</senha>
+        <tipo>tipo2</tipo>
+        <username>username2</username>
+    </item>
+</items>

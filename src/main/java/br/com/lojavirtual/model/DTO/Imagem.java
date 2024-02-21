@@ -1,12 +1,13 @@
 package br.com.lojavirtual.model.DTO;
 
-public class Imagem implements DefaultInterface {
+import br.com.lojavirtual.interfaces.DefaultEntitiesInterface;
+
+public class Imagem implements DefaultEntitiesInterface {
     private int imagem_id;
     private String url;
     private String descricao;
     private int produto_id;
-    public Imagem(int id, String url, String descricao, int produtoId) {
-        this.imagem_id = id;
+    public Imagem(String url, String descricao, int produtoId) {
         this.url = url;
         this.descricao = descricao;
         this.produto_id = produtoId;

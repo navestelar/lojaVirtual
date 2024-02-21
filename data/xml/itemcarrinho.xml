@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<items>
+    <item xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="itemCarrinho">
+        <carrinhoId>1</carrinhoId>
+        <id>1</id>
+        <produtoId>1</produtoId>
+        <quantidade>1</quantidade>
+    </item>
+    <item xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="itemCarrinho">
+        <carrinhoId>2</carrinhoId>
+        <id>2</id>
+        <produtoId>2</produtoId>
+        <quantidade>2</quantidade>
+    </item>
+    <item xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="itemCarrinho">
+        <carrinhoId>3</carrinhoId>
+        <id>3</id>
+        <produtoId>3</produtoId>
+        <quantidade>1</quantidade>
+    </item>
+    <item xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="itemCarrinho">
+        <carrinhoId>4</carrinhoId>
+        <id>4</id>
+        <produtoId>4</produtoId>
+        <quantidade>2</quantidade>
+    </item>
+</items>

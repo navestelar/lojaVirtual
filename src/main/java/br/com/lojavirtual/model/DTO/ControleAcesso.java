@@ -1,11 +1,15 @@
 package br.com.lojavirtual.model.DTO;
 
-public class ControleAcesso implements DefaultInterface {
+import com.google.gson.annotations.SerializedName;
+
+import br.com.lojavirtual.interfaces.DefaultEntitiesInterface;
+
+public class ControleAcesso implements DefaultEntitiesInterface {
     private int controleAcesso_id;
     private String permissoes;
+    @SerializedName("usuario_id_controleacesso")
     private int usuario_id;
-    public ControleAcesso(int id, String permissoes, int userId) {
-        this.controleAcesso_id = id;
+    public ControleAcesso(String permissoes, int userId) {
         this.permissoes = permissoes;
         this.usuario_id = userId;
     }

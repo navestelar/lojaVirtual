@@ -1,25 +1,26 @@
 package br.com.lojavirtual.model.DTO;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Cliente extends Usuario {
     private int cliente_id;
     private String email;
     private String telefone;
     private String endereco;
     private String cep;
+    @SerializedName("usuario_id_cliente")
     private int usuario_id;
 
-    public Cliente(int id, String nome, String username, String senha, String tipo, boolean ativo, int id2,
+    public Cliente(String nome, String username, String senha, String tipo, boolean ativo, int id2,
             String email, String telefone, String endereco, String cep, int userId) {
-        super(id, nome, username, senha, tipo, ativo);
-        id = id2;
+        super(nome, username, senha, tipo, ativo);
         this.email = email;
         this.telefone = telefone;
         this.endereco = endereco;
         this.cep = cep;
         this.usuario_id = userId;
     }
-    public Cliente(int id, String email, String telefone, String endereco, String cep, int userId) {
-        this.cliente_id = id;
+    public Cliente(String email, String telefone, String endereco, String cep, int userId) {
         this.email = email;
         this.telefone = telefone;
         this.endereco = endereco;

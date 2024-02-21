@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<items>
+    <item xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="carrinho">
+        <clienteId>1</clienteId>
+        <formaPagamentoId>1</formaPagamentoId>
+        <id>1</id>
+    </item>
+    <item xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="carrinho">
+        <clienteId>2</clienteId>
+        <formaPagamentoId>2</formaPagamentoId>
+        <id>2</id>
+    </item>
+    <item xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="carrinho">
+        <clienteId>3</clienteId>
+        <formaPagamentoId>3</formaPagamentoId>
+        <id>3</id>
+    </item>
+    <item xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="carrinho">
+        <clienteId>4</clienteId>
+        <formaPagamentoId>4</formaPagamentoId>
+        <id>4</id>
+    </item>
+</items>

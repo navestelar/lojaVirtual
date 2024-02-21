@@ -1,16 +1,17 @@
 package br.com.lojavirtual.model.DTO;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Administrador extends Usuario {
     private int administrador_id;
+    @SerializedName("usuario_id_admin")
     private int usuario_id;
-    public Administrador(int id, String nome, String username, String senha, String tipo, boolean ativo, int id2,
+    public Administrador(String nome, String username, String senha, String tipo, boolean ativo, int id2,
             int userId) {
-        super(id, nome, username, senha, tipo, ativo);
-        id = id2;
+        super(nome, username, senha, tipo, ativo);
         this.usuario_id = userId;
     }
-    public Administrador(int id, int userId) {
-        this.administrador_id = id;
+    public Administrador(int userId) {
         this.usuario_id = userId;
     }
     public Administrador() {

@@ -1,4 +1,4 @@
-package br.com.lojavirtual.model.DAO;
+package br.com.lojavirtual.interfaces;
 
 public enum PersistenceType {
   DATABASE,

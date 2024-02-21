@@ -1,13 +1,14 @@
 package br.com.lojavirtual.model.DTO;
 
-public class ItemCarrinho implements DefaultInterface {
+import br.com.lojavirtual.interfaces.DefaultEntitiesInterface;
+
+public class ItemCarrinho implements DefaultEntitiesInterface {
     private int itemcarrinho_id;
     private int quantidade;
     private int produto_id;
     private int carrinho_id;
 
-    public ItemCarrinho(int id, int quantidade, int produtoId, int carrinhoId) {
-        this.itemcarrinho_id = id;
+    public ItemCarrinho(int quantidade, int produtoId, int carrinhoId) {
         this.quantidade = quantidade;
         this.produto_id = produtoId;
         this.carrinho_id = carrinhoId;

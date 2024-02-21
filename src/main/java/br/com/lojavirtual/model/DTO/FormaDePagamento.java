@@ -1,10 +1,11 @@
 package br.com.lojavirtual.model.DTO;
 
-public class FormaDePagamento {
+import br.com.lojavirtual.interfaces.DefaultEntitiesInterface;
+
+public class FormaDePagamento implements DefaultEntitiesInterface {
     private int formaPagamento_id;
     private String tipo;
-    public FormaDePagamento(int id, String tipo) {
-        this.formaPagamento_id = id;
+    public FormaDePagamento(String tipo) {
         this.tipo = tipo;
     }
     public FormaDePagamento() {
