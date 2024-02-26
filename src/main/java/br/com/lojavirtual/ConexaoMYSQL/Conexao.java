@@ -8,18 +8,18 @@ import java.sql.SQLException;
 
 public class Conexao {
 
-    private static final String URL = "jdbc:postgresql://172.18.150.143:5432/ecommerce";
-    private static final String USUARIO = "postgres";
-    private static final String SENHA = "123456";
+    private static Conexao instance;
+    private final HikariDataSource dataSource;
 
-    private static final HikariConfig config;
-    private static final HikariDataSource dataSource;
+    private Conexao() throws SQLException {
+        String url = "jdbc:postgresql://172.18.150.143:5432/ecommerce";
+        String user = "postgres";
+        String password = "123456";
 
-    static {
-        config = new HikariConfig();
-        config.setJdbcUrl(URL);
-        config.setUsername(USUARIO);
-        config.setPassword(SENHA);
+        HikariConfig config = new HikariConfig();
+        config.setJdbcUrl(url);
+        config.setUsername(user);
+        config.setPassword(password);
         config.setDriverClassName("org.postgresql.Driver");
 
         config.setMaximumPoolSize(10);
@@ -29,23 +29,20 @@ public class Conexao {
         dataSource = new HikariDataSource(config);
     }
 
-    public static Connection conectar() {
-        try {
-            return dataSource.getConnection();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Erro ao conectar ao banco de dados", e);
+    public static synchronized Conexao getInstance() throws SQLException {
+        if (instance == null) {
+            instance = new Conexao();
         }
+        return instance;
     }
 
-    public static void fecharConexao(Connection conexao) {
-        if (conexao != null) {
-            try {
-                conexao.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-                throw new RuntimeException("Erro ao fechar conexão com o banco de dados", e);
-            }
+    public Connection getConnection() throws SQLException {
+        return dataSource.getConnection();
+    }
+
+    public static void closeDataSource() throws SQLException {
+        if (instance != null) {
+            instance.dataSource.close();
         }
     }
 }

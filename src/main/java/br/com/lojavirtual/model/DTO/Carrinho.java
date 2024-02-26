@@ -5,11 +5,11 @@ import br.com.lojavirtual.interfaces.DefaultEntitiesInterface;
 public class Carrinho implements DefaultEntitiesInterface {
     private int carrinho_id;
     private int cliente_id;
-    private int formaPagamento_id;
+    private String formaDePagamento;
 
-    public Carrinho(int clienteId, int formaPagamentoId) {
+    public Carrinho(int clienteId, String formaPagamento) {
         this.cliente_id = clienteId;
-        this.formaPagamento_id = formaPagamentoId;
+        this.formaDePagamento = formaPagamento;
     }
     public Carrinho() {
     }
@@ -25,14 +25,14 @@ public class Carrinho implements DefaultEntitiesInterface {
     public void setClienteId(int clienteId) {
         this.cliente_id = clienteId;
     }
-    public int getFormaPagamentoId() {
-        return formaPagamento_id;
+    public String getFormaPagamento() {
+        return formaDePagamento;
     }
-    public void setFormaPagamentoId(int formaPagamentoId) {
-        this.formaPagamento_id = formaPagamentoId;
+    public void setFormaPagamento(String formaPagamento) {
+        this.formaDePagamento = formaPagamento;
     }
     @Override
     public String toString() {
-        return "Carrinho [id=" + carrinho_id + ", clienteId=" + cliente_id + ", formaPagamentoId=" + formaPagamento_id + "]";
+        return "Carrinho [id=" + carrinho_id + ", clienteId=" + cliente_id + ", formaPagamentoId=" + formaDePagamento + "]";
     }    
 }

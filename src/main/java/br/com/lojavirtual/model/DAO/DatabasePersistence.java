@@ -16,9 +16,23 @@ import br.com.lojavirtual.interfaces.DefaultEntitiesInterface;
 
 class DatabasePersistence<T extends DefaultEntitiesInterface> implements DataPersistence<T> {
   private Class<T> clazz;
+  private Connection connection;
+  private static Conexao conexaoInstance;
 
   protected DatabasePersistence(Class<T> clazz) {
     this.clazz = clazz;
+    try {
+      if (conexaoInstance == null) {
+        synchronized (Conexao.class) {
+          if (conexaoInstance == null) {
+            conexaoInstance = Conexao.getInstance();
+          }
+        }
+      }
+      this.connection = conexaoInstance.getConnection();
+    } catch (SQLException e) {
+      throw new RuntimeException("Failed to get database connection", e);
+    }
   }
 
   @Override
@@ -54,8 +68,7 @@ class DatabasePersistence<T extends DefaultEntitiesInterface> implements DataPer
     sql += ")";
     values += ")";
     sql += values;
-    try (Connection connection = Conexao.conectar();
-        PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+    try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
       int paramIndex = 1;
       for (Object value : valuesList) {
         statement.setObject(paramIndex++, value);
@@ -71,8 +84,7 @@ class DatabasePersistence<T extends DefaultEntitiesInterface> implements DataPer
     String tableName = clazz.getSimpleName().toLowerCase();
     String sql = "SELECT * FROM " + tableName + " WHERE " + tableName + "_id = ?";
 
-    try (Connection connection = Conexao.conectar();
-        PreparedStatement statement = connection.prepareStatement(sql)) {
+    try (PreparedStatement statement = connection.prepareStatement(sql)) {
       statement.setInt(1, id);
       try (ResultSet resultSet = statement.executeQuery()) {
         if (resultSet.next()) {
@@ -129,8 +141,7 @@ class DatabasePersistence<T extends DefaultEntitiesInterface> implements DataPer
 
     sql += " WHERE " + idFieldName + " = ?";
 
-    try (Connection connection = Conexao.conectar();
-        PreparedStatement statement = connection.prepareStatement(sql)) {
+    try (PreparedStatement statement = connection.prepareStatement(sql)) {
       int paramIndex = 1;
       for (Object value : valuesList) {
         statement.setObject(paramIndex++, value);
@@ -146,8 +157,7 @@ class DatabasePersistence<T extends DefaultEntitiesInterface> implements DataPer
   public void delete(int id) {
     String tableName = clazz.getSimpleName().toLowerCase();
     String sql = "DELETE FROM " + tableName + " WHERE " + tableName + "_id = ?";
-    try (Connection connection = Conexao.conectar();
-        PreparedStatement statement = connection.prepareStatement(sql)) {
+    try (PreparedStatement statement = connection.prepareStatement(sql)) {
       statement.setInt(1, id);
       int rowsAffected = statement.executeUpdate();
       if (rowsAffected == 0) {
@@ -166,8 +176,7 @@ class DatabasePersistence<T extends DefaultEntitiesInterface> implements DataPer
     String tableName = clazz.getSimpleName().toLowerCase();
     String sql = "SELECT * FROM " + tableName;
     List<T> resultList = new ArrayList<>();
-    try (Connection connection = Conexao.conectar();
-        PreparedStatement statement = connection.prepareStatement(sql);
+    try (PreparedStatement statement = connection.prepareStatement(sql);
         ResultSet resultSet = statement.executeQuery()) {
       while (resultSet.next()) {
         T object = clazz.getDeclaredConstructor().newInstance();
@@ -193,13 +202,13 @@ class DatabasePersistence<T extends DefaultEntitiesInterface> implements DataPer
   public int getNextId() {
     List<T> objects = this.readAll();
     int maxId = 0;
-  
+
     for (T object : objects) {
       if (object.getId() > maxId) {
         maxId = object.getId();
       }
     }
-  
+
     return maxId + 1;
-  }  
+  }
 }

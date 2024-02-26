@@ -1,2 +1,3 @@
 {"produto_id":1,"nome":"NomeProduto1 atualizado","descricao":"DescricaoProduto1","qtdEstoque":10,"preco":100.0,"ativo":true,"fornecedor_id":1}
 {"produto_id":2,"nome":"NomeProduto2","descricao":"DescricaoProduto2","qtdEstoque":20,"preco":200.0,"ativo":true,"fornecedor_id":2}
+{"produto_id":3,"nome":"Garrafa","descricao":"Garrafa azul de polimetano","qtdEstoque":1,"preco":50.0,"ativo":true,"fornecedor_id":2}

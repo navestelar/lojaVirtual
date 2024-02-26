@@ -6,7 +6,7 @@ public class Imagem implements DefaultEntitiesInterface {
     private int imagem_id;
     private String url;
     private String descricao;
-    private int produto_id;
+    private Integer produto_id;
     public Imagem(String url, String descricao, int produtoId) {
         this.url = url;
         this.descricao = descricao;
@@ -35,7 +35,7 @@ public class Imagem implements DefaultEntitiesInterface {
     public int getProdutoId() {
         return produto_id;
     }
-    public void setProdutoId(int produtoId) {
+    public void setProdutoId(Integer produtoId) {
         this.produto_id = produtoId;
     }
     @Override
