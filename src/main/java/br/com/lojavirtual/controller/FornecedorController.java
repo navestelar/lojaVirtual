@@ -57,9 +57,10 @@ public class FornecedorController {
     listarFornecedores();
     int id = tela.lerId();
 
-    System.out.println("Atualizar fornecedor: ");
+    tela.mostrarMensagem("Atualizar fornecedor: ");
     mostrarFornecedor(id);
 
+    newFornecedor.setId(id);
     newFornecedor.setNome(tela.lerNome());
     newFornecedor.setContato(tela.lerContato());
 

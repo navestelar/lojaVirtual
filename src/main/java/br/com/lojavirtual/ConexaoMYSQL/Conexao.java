@@ -29,9 +29,13 @@ public class Conexao {
         dataSource = new HikariDataSource(config);
     }
 
-    public static synchronized Conexao getInstance() throws SQLException {
+    public static synchronized Conexao getInstance() {
         if (instance == null) {
-            instance = new Conexao();
+            try {
+                instance = new Conexao();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return instance;
     }

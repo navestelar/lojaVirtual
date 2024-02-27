@@ -7,7 +7,7 @@ public class Imagem implements DefaultEntitiesInterface {
     private String url;
     private String descricao;
     private Integer produto_id;
-    public Imagem(String url, String descricao, int produtoId) {
+    public Imagem(String url, String descricao, Integer produtoId) {
         this.url = url;
         this.descricao = descricao;
         this.produto_id = produtoId;
@@ -32,7 +32,7 @@ public class Imagem implements DefaultEntitiesInterface {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    public int getProdutoId() {
+    public Integer getProdutoId() {
         return produto_id;
     }
     public void setProdutoId(Integer produtoId) {

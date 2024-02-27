@@ -71,6 +71,7 @@ public class ProdutoController {
     System.out.println("Atualizar produto: ");
     mostrarProduto(id);
 
+    newProduto.setId(id);
     newProduto.setNome(tela.lerNome());
     newProduto.setDescricao(tela.lerDescricao());
     newProduto.setQtdEstoque(tela.lerQuantidade());

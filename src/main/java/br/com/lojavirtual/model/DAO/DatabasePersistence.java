@@ -17,21 +17,14 @@ import br.com.lojavirtual.interfaces.DefaultEntitiesInterface;
 class DatabasePersistence<T extends DefaultEntitiesInterface> implements DataPersistence<T> {
   private Class<T> clazz;
   private Connection connection;
-  private static Conexao conexaoInstance;
 
   protected DatabasePersistence(Class<T> clazz) {
     this.clazz = clazz;
     try {
-      if (conexaoInstance == null) {
-        synchronized (Conexao.class) {
-          if (conexaoInstance == null) {
-            conexaoInstance = Conexao.getInstance();
-          }
-        }
-      }
-      this.connection = conexaoInstance.getConnection();
+      this.connection = Conexao.getInstance().getConnection();
     } catch (SQLException e) {
-      throw new RuntimeException("Failed to get database connection", e);
+      System.err.println("Failed to get database connection: " + e.getMessage());
+      this.connection = null;
     }
   }
 

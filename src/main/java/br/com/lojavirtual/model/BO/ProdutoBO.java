@@ -39,7 +39,7 @@ public class ProdutoBO {
   public void deletarProduto(int id) {
     List<Imagem> imagens = imagemBO.listarImagens();
     for (Imagem imagem : imagens) {
-      if (imagem.getProdutoId() == id) {
+      if (imagem.getProdutoId() != null && imagem.getProdutoId() == id) {
         imagem.setProdutoId(null);
         imagemBO.atualizarImagem(imagem);
       }
@@ -48,7 +48,7 @@ public class ProdutoBO {
     List<ItemCarrinho> itensCarrinho = itemCarrinhoBO.listarItensCarrinho();
     for (ItemCarrinho itemCarrinho : itensCarrinho) {
       if (itemCarrinho.getProdutoId() == id) {
-        itemCarrinhoBO.deletarItemCarrinho(id);
+        itemCarrinhoBO.deletarItemCarrinho(itemCarrinho.getId());
       }
     }
 
