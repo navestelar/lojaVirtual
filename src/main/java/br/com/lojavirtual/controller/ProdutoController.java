@@ -54,7 +54,7 @@ public class ProdutoController {
     produto.setPreco(tela.lerPreco());
     produto.setAtivo(tela.lerAtivo());
 
-    fornecedorController.listarFornecedors();
+    fornecedorController.listarFornecedores();
     produto.setFornecedor_id(tela.lerFornecedorId());
 
     produtoBO.cadastrarProduto(produto);
@@ -77,7 +77,7 @@ public class ProdutoController {
     newProduto.setPreco(tela.lerPreco());
     newProduto.setAtivo(tela.lerAtivo());
 
-    fornecedorController.listarFornecedors();
+    fornecedorController.listarFornecedores();
     newProduto.setFornecedor_id(tela.lerFornecedorId());
 
     produtoBO.atualizarProduto(newProduto);
@@ -111,6 +111,6 @@ public class ProdutoController {
   public void mostrarProduto(int id) {
     Produto produto = produtoBO.buscarProduto(id);
 
-    System.out.println(produto.toString());
+    tela.mostrarMensagem(produto.toString());
   }
 }

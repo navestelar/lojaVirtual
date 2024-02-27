@@ -27,7 +27,13 @@ public class FornecedorController {
           cadastrarFornecedor();
           break;
         case 2:
-          System.out.println("Saindo...");
+          atualizarFornecedor();
+          break;
+        case 3:
+          removerFornecedor();
+          break;
+        case 4:
+          listarFornecedores();
           break;
         default:
           tela.mostrarMensagem("Opção inválida!");
@@ -36,20 +42,58 @@ public class FornecedorController {
   }
 
   private void cadastrarFornecedor() {
-    Fornecedor produto = new Fornecedor();
-    produto.setNome(tela.lerNome());
-    produto.setContato(tela.lerContato());
+    Fornecedor fornecedor = new Fornecedor();
+    fornecedor.setNome(tela.lerNome());
+    fornecedor.setContato(tela.lerContato());
 
-    fornecedorBO.cadastrarFornecedor(produto);
+    fornecedorBO.cadastrarFornecedor(fornecedor);
 
     tela.mostrarMensagem("Fornecedor salvo com sucesso!");
   }
 
-  public void listarFornecedors() {
-    List<Fornecedor> produtos = fornecedorBO.listarFornecedores();
+  private void atualizarFornecedor() {
+    Fornecedor newFornecedor = new Fornecedor();
 
-    for (Fornecedor produto : produtos) {
-      System.out.println(produto.toString());
+    listarFornecedores();
+    int id = tela.lerId();
+
+    System.out.println("Atualizar fornecedor: ");
+    mostrarFornecedor(id);
+
+    newFornecedor.setNome(tela.lerNome());
+    newFornecedor.setContato(tela.lerContato());
+
+    fornecedorBO.atualizarFornecedor(newFornecedor);
+
+    tela.mostrarMensagem("Fornecedor atualizado com sucesso!");
+  }
+
+  public void listarFornecedores() {
+    List<Fornecedor> fornecedores = fornecedorBO.listarFornecedores();
+
+    for (Fornecedor fornecedor : fornecedores) {
+      tela.mostrarMensagem(fornecedor.toString());
     }
+  }
+
+  public void removerFornecedor() {
+    listarFornecedores();
+    int id = tela.lerId();
+
+    tela.mostrarMensagem("Fornecedor a ser excluído: ");
+    mostrarFornecedor(id);
+
+    boolean excluir = tela.lerConfirmacao();
+
+    if (excluir) {
+      fornecedorBO.deletarFornecedor(id);
+      tela.mostrarMensagem("Fornecedor excluído com sucesso!");
+    }
+  }
+
+  public void mostrarFornecedor(int id) {
+    Fornecedor fornecedor = fornecedorBO.buscarFornecedor(id);
+
+    tela.mostrarMensagem(fornecedor.toString());
   }
 }

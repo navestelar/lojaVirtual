@@ -13,14 +13,25 @@ public class FornecedorView {
     System.out.print("Digite a opção: ");
   }
 
+  public int lerId() {
+    System.out.print("Id do fornecedor: ");
+    return Integer.parseInt(System.console().readLine());
+  }
+
   public String lerNome() {
-    System.out.print("Nome do produto: ");
+    System.out.print("Nome do fornecedor: ");
     return System.console().readLine();
   }
 
   public String lerContato() {
-    System.out.print("Descrição do produto: ");
+    System.out.print("Contato do fornecedor: ");
     return System.console().readLine();
+  }
+
+  public boolean lerConfirmacao() {
+    System.out.print("Tem certeza?(S/N): ");
+    String resposta = System.console().readLine().toUpperCase();
+    return resposta.equals("S");
   }
 
   public void mostrarMensagem(String mensagem) {
