@@ -3,6 +3,7 @@ package br.com.lojavirtual.model.DTO;
 import com.google.gson.annotations.SerializedName;
 
 import br.com.lojavirtual.interfaces.DefaultEntitiesInterface;
+import br.com.lojavirtual.interfaces.UserType;
 
 public class Usuario implements DefaultEntitiesInterface {
     @SerializedName("userId")
@@ -13,11 +14,11 @@ public class Usuario implements DefaultEntitiesInterface {
     private String tipo;
     private boolean ativo;
 
-    public Usuario(String nome, String username, String senha, String tipo, boolean ativo) {
+    public Usuario(String nome, String username, String senha, UserType tipo, boolean ativo) {
         this.nome = nome;
         this.username = username;
         this.senha = senha;
-        this.tipo = tipo;
+        this.tipo = tipo.getLabel();
         this.ativo = ativo;
     }
 
@@ -60,8 +61,8 @@ public class Usuario implements DefaultEntitiesInterface {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setTipo(UserType tipo) {
+        this.tipo = tipo.getLabel();
     }
 
     public boolean isAtivo() {

@@ -3,6 +3,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "ProdutoView",
+      "request": "launch",
+      "mainClass": "br.com.lojavirtual.view.ProdutoView",
+      "projectName": "lojavirtual"
+    },
+    {
+      "type": "java",
       "name": "App",
       "request": "launch",
       "mainClass": "br.com.lojavirtual.App",

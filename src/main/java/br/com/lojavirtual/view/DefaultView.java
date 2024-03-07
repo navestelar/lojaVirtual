@@ -8,6 +8,8 @@ public class DefaultView {
     System.out.println("------------------------");
     System.out.println("1 - Produto");
     System.out.println("2 - Fornecedor");
+    System.out.println("3 - Cliente");
+    System.out.println("4 - Administrador");
     System.out.println("0 - Sair");
     System.out.println("------------------------");
     System.out.print("Digite a opção: ");

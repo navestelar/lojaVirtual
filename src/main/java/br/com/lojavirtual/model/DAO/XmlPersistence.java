@@ -28,10 +28,10 @@ class XmlPersistence<T extends DefaultEntitiesInterface> implements DataPersiste
   }
 
   @Override
-  public void create(T object) {
+  public boolean create(T object) {
     List<T> objects = readAll();
     objects.add(object);
-    writeAll(objects);
+    return writeAll(objects);
   }
 
   @Override
@@ -46,7 +46,7 @@ class XmlPersistence<T extends DefaultEntitiesInterface> implements DataPersiste
   }
 
   @Override
-  public void update(T object) {
+  public boolean update(T object) {
     List<T> objects = readAll();
     for (int i = 0; i < objects.size(); i++) {
       T obj = objects.get(i);
@@ -55,11 +55,11 @@ class XmlPersistence<T extends DefaultEntitiesInterface> implements DataPersiste
         break;
       }
     }
-    writeAll(objects);
+    return writeAll(objects);
   }
 
   @Override
-  public void delete(int id) {
+  public boolean delete(int id) {
     List<T> objects = readAll();
     Iterator<T> iterator = objects.iterator();
     while (iterator.hasNext()) {
@@ -68,7 +68,7 @@ class XmlPersistence<T extends DefaultEntitiesInterface> implements DataPersiste
         iterator.remove();
       }
     }
-    writeAll(objects);
+    return writeAll(objects);
   }
 
   @Override
@@ -102,7 +102,7 @@ class XmlPersistence<T extends DefaultEntitiesInterface> implements DataPersiste
     return maxId + 1;
   }
   
-  public void writeAll(List<T> objects) {
+  public boolean writeAll(List<T> objects) {
     XmlItems<T> xmlItems = new XmlItems<>();
     xmlItems.setItems(objects);
 
@@ -111,8 +111,10 @@ class XmlPersistence<T extends DefaultEntitiesInterface> implements DataPersiste
       Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
       jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
       jaxbMarshaller.marshal(xmlItems, file);
+      return true;
     } catch (JAXBException e) {
       e.printStackTrace();
+      return false;
     }
   }
 }

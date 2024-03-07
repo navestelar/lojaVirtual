@@ -31,12 +31,14 @@ class JsonPersistence<T extends DefaultEntitiesInterface> implements DataPersist
   }
 
   @Override
-  public void create(T object) {
+  public boolean create(T object) {
     try (FileWriter writer = new FileWriter(file, true)) {
       String json = gson.toJson(object);
       writer.write(json + "\n");
+      return true;
     } catch (IOException e) {
       e.printStackTrace();
+      return false;
     }
   }
 
@@ -58,7 +60,7 @@ class JsonPersistence<T extends DefaultEntitiesInterface> implements DataPersist
   }
 
   @Override
-  public void update(T object) {
+  public boolean update(T object) {
     List<T> objects = readAll();
 
     for (int i = 0; i < objects.size(); i++) {
@@ -69,11 +71,11 @@ class JsonPersistence<T extends DefaultEntitiesInterface> implements DataPersist
       }
     }
 
-    writeAll(objects);
+    return writeAll(objects);
   }
 
   @Override
-  public void delete(int id) {
+  public boolean delete(int id) {
     List<T> objects = readAll();
 
     for (Iterator<T> iterator = objects.iterator(); iterator.hasNext();) {
@@ -83,7 +85,7 @@ class JsonPersistence<T extends DefaultEntitiesInterface> implements DataPersist
       }
     }
 
-    writeAll(objects);
+    return writeAll(objects);
   }
 
   @Override
@@ -117,14 +119,16 @@ class JsonPersistence<T extends DefaultEntitiesInterface> implements DataPersist
     return maxId + 1;
   }
 
-  private void writeAll(List<T> objects) {
+  private boolean writeAll(List<T> objects) {
     try (FileWriter writer = new FileWriter(file)) {
       for (T obj : objects) {
         String json = gson.toJson(obj);
         writer.write(json + "\n");
       }
+      return true;
     } catch (IOException e) {
       e.printStackTrace();
+      return false;
     }
   }
 

@@ -2,6 +2,8 @@ package br.com.lojavirtual.model.DTO;
 
 import com.google.gson.annotations.SerializedName;
 
+import br.com.lojavirtual.interfaces.UserType;
+
 public class Cliente extends Usuario {
     private int cliente_id;
     private String email;
@@ -11,24 +13,13 @@ public class Cliente extends Usuario {
     @SerializedName("usuario_id_cliente")
     private int usuario_id;
 
-    public Cliente(String nome, String username, String senha, String tipo, boolean ativo, int id2,
-            String email, String telefone, String endereco, String cep, int userId) {
-        super(nome, username, senha, tipo, ativo);
-        this.email = email;
-        this.telefone = telefone;
-        this.endereco = endereco;
-        this.cep = cep;
-        this.usuario_id = userId;
+    public Cliente(String nome, String username, String senha, UserType tipo, boolean ativo) {
+      super(nome, username, senha, tipo, ativo);
     }
-    public Cliente(String email, String telefone, String endereco, String cep, int userId) {
-        this.email = email;
-        this.telefone = telefone;
-        this.endereco = endereco;
-        this.cep = cep;
-        this.usuario_id = userId;
-    }
+
     public Cliente() {
     }
+
     public int getId() {
         return cliente_id;
     }
@@ -64,5 +55,61 @@ public class Cliente extends Usuario {
     }
     public void setUserId(int userId) {
         this.usuario_id = userId;
+    }
+
+    @Override
+    public String getNome() {
+        return super.getNome();
+    }
+
+    @Override
+    public String getSenha() {
+        return super.getSenha();
+    }
+
+    @Override
+    public String getTipo() {
+        return super.getTipo();
+    }
+
+    @Override
+    public String getUsername() {
+        return super.getUsername();
+    }
+
+    @Override
+    public boolean isAtivo() {
+        return super.isAtivo();
+    }
+
+    @Override
+    public void setAtivo(boolean ativo) {
+        super.setAtivo(ativo);
+    }
+
+    @Override
+    public void setNome(String nome) {
+        super.setNome(nome);
+    }
+
+    @Override
+    public void setSenha(String senha) {
+        super.setSenha(senha);
+    }
+
+    @Override
+    public void setTipo(UserType tipo) {
+        super.setTipo(tipo);
+    }
+
+    @Override
+    public void setUsername(String username) {
+        super.setUsername(username);
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente [id=" + cliente_id + ", nome="+ getNome() + ", username=" + getUsername() + ", ativo=" + isAtivo() + ", email=" + email + ", telefone=" + telefone + ", endereco="
+                + endereco + ", cep=" + cep + ", user id=" + usuario_id + "]";
     }
 }

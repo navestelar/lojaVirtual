@@ -29,7 +29,7 @@ class DatabasePersistence<T extends DefaultEntitiesInterface> implements DataPer
   }
 
   @Override
-  public void create(T object) {
+  public boolean create(T object) {
     String tableName = clazz.getSimpleName().toLowerCase();
     String sql = "INSERT INTO " + tableName + " (";
     String values = " VALUES (";
@@ -67,8 +67,10 @@ class DatabasePersistence<T extends DefaultEntitiesInterface> implements DataPer
         statement.setObject(paramIndex++, value);
       }
       statement.executeUpdate();
+      return true;
     } catch (SQLException e) {
       e.printStackTrace();
+      return false;
     }
   }
 
@@ -102,7 +104,7 @@ class DatabasePersistence<T extends DefaultEntitiesInterface> implements DataPer
   }
 
   @Override
-  public void update(T object) {
+  public boolean update(T object) {
     String tableName = clazz.getSimpleName().toLowerCase();
     String sql = "UPDATE " + tableName + " SET ";
     Field[] fields = clazz.getDeclaredFields();
@@ -141,13 +143,15 @@ class DatabasePersistence<T extends DefaultEntitiesInterface> implements DataPer
       }
       statement.setObject(paramIndex, idValue);
       statement.executeUpdate();
+      return true;
     } catch (SQLException e) {
       e.printStackTrace();
+      return false;
     }
   }
 
   @Override
-  public void delete(int id) {
+  public boolean delete(int id) {
     String tableName = clazz.getSimpleName().toLowerCase();
     String sql = "DELETE FROM " + tableName + " WHERE " + tableName + "_id = ?";
     try (PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -155,12 +159,15 @@ class DatabasePersistence<T extends DefaultEntitiesInterface> implements DataPer
       int rowsAffected = statement.executeUpdate();
       if (rowsAffected == 0) {
         System.out.println("Nenhum registro foi excluído com o ID: " + id);
+        return false;
       } else {
         System.out.println("Registro excluído com sucesso!");
+        return true;
       }
     } catch (SQLException e) {
       System.out.println("Erro ao tentar excluir o registro com o ID: " + id);
       e.printStackTrace();
+      return false;
     }
   }
 

@@ -2,14 +2,15 @@ package br.com.lojavirtual.model.DTO;
 
 import com.google.gson.annotations.SerializedName;
 
+import br.com.lojavirtual.interfaces.UserType;
+
 public class Administrador extends Usuario {
     private int administrador_id;
     @SerializedName("usuario_id_admin")
     private int usuario_id;
-    public Administrador(String nome, String username, String senha, String tipo, boolean ativo, int id2,
-            int userId) {
+
+    public Administrador(String nome, String username, String senha, UserType tipo, boolean ativo) {
         super(nome, username, senha, tipo, ativo);
-        this.usuario_id = userId;
     }
     public Administrador(int userId) {
         this.usuario_id = userId;
@@ -30,6 +31,6 @@ public class Administrador extends Usuario {
     }
     @Override
     public String toString() {
-        return "Administrador [id=" + administrador_id + ", userId=" + usuario_id + "]";
+        return "Administrador [id=" + administrador_id + ", Nome=" + getNome() + ", Username=" + getUsername() + ", Senha=" + getSenha() + ", Ativo=" + isAtivo() + ", userId=" + usuario_id + "]";
     }
 }
