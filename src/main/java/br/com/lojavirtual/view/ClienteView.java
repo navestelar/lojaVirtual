@@ -14,7 +14,7 @@ public class ClienteView {
   }
 
   public int lerId() {
-    System.out.print("Id do administrador: ");
+    System.out.print("Id do cliente: ");
     return Integer.parseInt(System.console().readLine());
   }
 

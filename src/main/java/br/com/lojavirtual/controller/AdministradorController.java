@@ -55,10 +55,10 @@ public class AdministradorController {
     usuario.setUsername(tela.lerUsername());
     usuario.setSenha(tela.lerSenha());
     usuario.setAtivo(tela.lerAtivo());
-    usuario.setTipo(UserType.USUARIO);
+    usuario.setTipo(UserType.ADMINISTRADOR);
 
     if (usuarioBO.cadastrarUsuario(usuario)) {
-      Administrador administrador = new Administrador(usuario.getNome(), usuario.getUsername(), usuario.getSenha(), UserType.USUARIO,
+      Administrador administrador = new Administrador(usuario.getNome(), usuario.getUsername(), usuario.getSenha(), UserType.ADMINISTRADOR,
           usuario.isAtivo());
 
       administrador.setUserId(usuario.getId());
@@ -90,7 +90,7 @@ public class AdministradorController {
 
     if (usuarioBO.atualizarUsuario(newUsuario)) {
       Administrador newAdministrador = new Administrador(newUsuario.getNome(), newUsuario.getUsername(), newUsuario.getSenha(),
-          UserType.USUARIO, newUsuario.isAtivo());
+          UserType.ADMINISTRADOR, newUsuario.isAtivo());
 
       newAdministrador.setId(id);
       newAdministrador.setUserId(newUsuario.getId());

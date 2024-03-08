@@ -4,7 +4,6 @@ import java.util.List;
 
 import br.com.lojavirtual.interfaces.DataPersistence;
 import br.com.lojavirtual.interfaces.PersistenceType;
-import br.com.lojavirtual.interfaces.UserType;
 import br.com.lojavirtual.model.DAO.PersistenceFactory;
 import br.com.lojavirtual.model.DTO.Usuario;
 
@@ -19,7 +18,7 @@ public class UsuarioBO {
     if (usuario.getId() <= 0) {
       usuario.setId(dataPersistence.getNextId());
     }
-  
+
     return dataPersistence.create(usuario);
   }
 
@@ -43,7 +42,7 @@ public class UsuarioBO {
     List<Usuario> usuarios = listarUsuarios();
 
     for (Usuario usuario : usuarios) {
-      if (usuario.getUsername() == username) {
+      if (usuario.getUsername().equals(username)) {
         return usuario;
       }
     }
@@ -51,19 +50,19 @@ public class UsuarioBO {
     return null;
   }
 
-  public UserType autenticar(Usuario usuario, String username, String senha) {
+  public String autenticar(String username, String senha) {
+    Usuario usuario = getUsuarioByUsername(username);
+
     if (usuario == null) {
-      System.out.println("Não existe nenhum usuário com esse username em nosso sistema, cadastre-se ou tente outro username");
+      System.out
+          .println("Não existe nenhum usuário com esse username em nosso sistema, cadastre-se ou tente outro username");
       return null;
     }
 
-    if (usuario.getSenha() == senha) {
-      if (usuario.getTipo() == UserType.ADMINISTRADOR.getLabel())
-        return UserType.ADMINISTRADOR;
-      return UserType.USUARIO;
+    if (usuario.getSenha().equals(senha)) {
+      return usuario.getTipo();
     }
 
-    System.out.println("");
+    System.out.println("Senha incorreta, tente novamente");
     return null;
-  }
-}
+  }}

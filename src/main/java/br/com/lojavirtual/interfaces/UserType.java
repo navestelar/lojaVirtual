@@ -1,21 +1,20 @@
 package br.com.lojavirtual.interfaces;
 
 public enum UserType {
-  ADMINISTRADOR(1),
-  USUARIO(2);
+  ADMINISTRADOR("administrador"),
+  USUARIO("usuário");
 
-  private final int value;
+  private final String name;
 
-  private UserType(int value) {
-    this.value = value;
+  private UserType(String userTypeName) {
+    name = userTypeName;
   }
 
-  public int getValue() {
-    return value;
+  public boolean equalsName(String userType) {
+    return name.equals(userType);
   }
 
-  public String getLabel() {
-    if (getValue() == 1) return "administrador";
-    return "usuário";
+  public String toString() {
+    return this.name;
   }
 }

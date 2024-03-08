@@ -18,7 +18,7 @@ public class Usuario implements DefaultEntitiesInterface {
         this.nome = nome;
         this.username = username;
         this.senha = senha;
-        this.tipo = tipo.getLabel();
+        this.tipo = tipo.toString();
         this.ativo = ativo;
     }
 
@@ -62,7 +62,7 @@ public class Usuario implements DefaultEntitiesInterface {
     }
 
     public void setTipo(UserType tipo) {
-        this.tipo = tipo.getLabel();
+        this.tipo = tipo.toString();
     }
 
     public boolean isAtivo() {
